@@ -1,0 +1,192 @@
+header .nav {
+  width: 100%;
+  height: 6.2rem;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+}
+header .nav img {
+  width: 21%;
+  height: 0.5rem;
+  margin-top: 3rem;
+}
+header .nav img:nth-child(1) {
+  margin-left: 12%;
+  height: 0.5rem;
+}
+header .nav img:nth-child(3) {
+  height: 0.5rem;
+  margin-right: 12%;
+}
+header .nav p {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  line-height: 2.5rem;
+  text-align: center;
+  color: #333;
+}
+main .pinglun {
+  font-size: 1.3rem;
+  border-bottom: 1px solid #ebebeb;
+  width: 90%;
+  margin: 0 auto;
+}
+main .pinglun .youke {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 1.5rem;
+  overflow: hidden;
+}
+main .pinglun .youke p {
+  float: left;
+}
+main .pinglun .youke .touxiang {
+  width: 3.3rem;
+  height: 3.3rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+main .pinglun .youke .touxiang img {
+  width: 100%;
+  height: 100%;
+}
+main .pinglun .youke .zan {
+  float: right;
+  color: #949494;
+}
+main .pinglun .youke .zan img {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+main .pinglun .youke .zan span {
+  margin-right: 1rem;
+}
+main .pinglun .youke p:nth-child(2) {
+  color: #949494;
+  margin-left: 0.8rem;
+}
+main .pinglun .youke p:nth-child(2) span {
+  line-height: 1.2rem;
+}
+main .pinglun .content {
+  width: 80%;
+  margin: 0 auto;
+  margin-left: 5.2rem;
+}
+main .pinglun .content span {
+  line-height: 1rem;
+}
+main .pinglun .con {
+  width: 80%;
+  height: auto;
+  margin-left: 5.2rem;
+  margin-bottom: 3rem;
+  background: #f5f5f5;
+}
+main .pinglun .con span {
+  margin-left: 1rem;
+  line-height: 1rem;
+}
+footer .sec {
+  width: 100%;
+  height: 4.3rem;
+  background: #f5f5f5;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+footer .sec div {
+  height: 2rem;
+  float: left;
+  position: relative;
+  margin-left: 1rem;
+}
+footer .sec .ipt {
+  position: relative;
+  margin-left: 1rem;
+}
+footer .sec .ipt img {
+  position: absolute;
+  top: 1.2rem;
+  left: 1rem;
+}
+footer .sec .ipt input {
+  width: 8.5rem;
+  height: 2.6rem;
+  border: 1px solid #c4c4c4;
+  border-radius: 0.3rem;
+  margin-top: 0.5rem;
+  text-indent: 3em;
+}
+footer .sec .enr {
+  width: 8rem;
+  height: 4.3rem;
+  float: right;
+  background: #ef3c42;
+  color: white;
+  text-align: center;
+  line-height: 4.3rem;
+  font-size: 1.5rem;
+}
+footer .sec .pl img {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+footer .sec .dz img {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+footer .sec .share img {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+footer .sec .pl,
+footer .sec .dz,
+footer .sec .share {
+  margin-top: 1.3rem;
+  margin-left: 3rem;
+}
+footer .sec .pl span {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.9rem;
+  background: red;
+  color: white;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  text-align: center;
+}
+footer .sec .dz span {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.9rem;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  text-align: center;
+}
+@media only screen and (max-width: 322px) {
+  footer .sec .pl,
+  footer .sec .dz,
+  footer .sec .share {
+    margin-top: 1.3rem;
+    margin-left: 1.2rem;
+  }
+  footer .sec .enr {
+    width: 6rem;
+  }
+}
+@media only screen and (max-width: 375px) {
+  footer .sec .pl,
+  footer .sec .dz,
+  footer .sec .share {
+    margin-top: 1.3rem;
+    margin-left: 2.3rem;
+  }
+  footer .sec .enr {
+    width: 6rem;
+  }
+}
+/*# sourceMappingURL=hotpl.css.map */

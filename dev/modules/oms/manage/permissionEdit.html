@@ -1,0 +1,59 @@
+
+<div class="alert alert-info text-center">{{title}}</div>
+
+<form name="myform" class="form-horizontal css-form" role="form" novalidate>
+    <div class="form-group" ng-class="{true:'has-error'}[ submitted && !myform.name.$valid ]" style="margin-bottom: 0px;">
+        <label for="permissionName" class="col-md-3 control-label text-right">功能名称：</label>
+        <div class="col-md-9">
+            <input type="text" ng-model="permission.permissionName" name="permissionName" id="permissionName" class="form-control" required ng-maxlength="20" ng-minLength="2"/>
+            <div class="alert " style="margin-bottom: 0px;">
+                <small class="text-danger" ng-show="myform.permissionName.$error.required && (myform.permissionName.$dirty || submitted)">
+                    必须填入功能名称
+                </small>
+                <small class="text-danger" ng-show="myform.permissionName.$error.minlength">
+                    名称最小2个字符
+                </small>
+                <small class="text-danger" ng-show="myform.permissionName.$error.maxlength">
+                    名称最大不能超过20个字符
+                </small>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label for="permissionControllerName" class="col-md-3 control-label text-right">操作名称：</label>
+        <div class="col-md-9">
+            <input type="text" ng-model="permission.permissionControllerName" name="permissionControllerName" id="permissionControllerName" class="form-control" required ng-maxlength="20" ng-minLength="2"/>
+            <div class="alert" style="margin-bottom: 0px;">
+                <small class="text-danger" ng-show="myform.permissionControllerName.$error.required && (myform.permissionControllerName.$dirty || submitted)">
+                    必须填入功能名称
+                </small>
+                <small class="text-danger" ng-show="myform.permissionControllerName.$error.minlength">
+                    名称最小2个字符
+                </small>
+                <small class="text-danger" ng-show="myform.permissionControllerName.$error.maxlength">
+                    名称最大不能超过20个字符
+                </small>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-6 text-center">
+            <button class="btn btn-primary" ng-click="permissionEditCtrl.checkCloseDialog()" ng-disabled="submitStatus">保存</button>
+
+        </div>
+
+        <div class="col-md-6 text-center">
+            <button class="btn btn-primary" ng-click="closeThisDialog(0)">取消</button>
+        </div>
+    </div>
+
+</form>
+
+<div class="alert alert-danger" ng-show="errorMessage!=''">
+{{errorMessage}}
+</div>

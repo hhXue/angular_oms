@@ -1,0 +1,42 @@
+
+{
+  "name": "push",
+  "alias": "PUSH",
+  "modules": [
+    {
+      "name": "push.content",
+      "alias": "推送",
+      "controllers": [
+        {
+          "name": "push.content.addnews",
+          "alias": "发送透传",
+          "methods": [{
+            "name": "create",
+            "alias": "添加权限"
+          },{
+            "name": "update",
+            "alias": "编辑"
+          },{
+            "name": "read",
+            "alias": "权限列表"
+          }]
+        },
+        {
+          "name": "push.content.pushlist",
+          "alias": "推送列表",
+          "methods": [{
+            "name": "create",
+            "alias": "添加权限"
+          },{
+            "name": "update",
+            "alias": "编辑"
+          },{
+            "name": "read",
+            "alias": "权限列表"
+          }]
+        }
+      ],
+      "methods": []
+    }
+  ]
+}

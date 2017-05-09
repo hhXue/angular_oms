@@ -1,0 +1,45 @@
+header .nav {
+  width: 100%;
+  height: 6.2rem;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+}
+header .nav img {
+  width: 21%;
+  height: 0.5rem;
+  margin-top: 3rem;
+}
+header .nav img:nth-child(1) {
+  margin-left: 10%;
+  height: 0.5rem ;
+}
+header .nav img:nth-child(3) {
+  height: 0.5rem ;
+  margin-right: 10%;
+}
+header .nav p {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  line-height: 2.5rem;
+  text-align: center;
+  color: #333;
+}
+main .content {
+  width: 96%;
+  height: auto;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  line-height: 2.7rem;
+}
+main .content p:not(.img) {
+  text-indent: 2em;
+}
+main .content .img {
+  width: 100%;
+  height: 22.5rem;
+}
+main .content .img img {
+  width: 100%;
+  height: 100%;
+}

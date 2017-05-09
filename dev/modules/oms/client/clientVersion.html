@@ -1,0 +1,411 @@
+
+ <link href="styles/css/client.css" rel="stylesheet"> 
+
+ <div class="alert alert-info">版本设置</div>
+ <div class="row client-version">
+ 	<div class="col-md-5 text-center">
+ 		<div class="alert alert-info" ng-if="fromData.title">
+ 			{{fromData.title}} {{leftApp.appKeyName + leftApp.appsAppOs + leftApp.appsAppVersion}}
+ 		</div>
+ 		<div class="panel panel-default">
+ 			<div class="alert alert-info text-left">
+ 				<label width=25% ng-repeat="app in fromApp">
+ 					<input type="radio" ng-if="$index==0" checked="checked" name="appleft" ng-click="versionCtrl.getLeftModel(app)"> 
+ 					<input type="radio" ng-if="$index!=0" name="appleft" ng-click="versionCtrl.getLeftModel(app)"> 
+ 					<span ng-if="app.appsAppOs">{{app.appKeyName}} {{app.appsAppOs}} {{app.appsAppVersion}}</span>
+ 					<span ng-if="app.name">{{app.appKeyName}} {{app.name}} {{app.version}}</span>
+ 					&nbsp;&nbsp;
+ 				</label>
+ 				<p></p>
+ 				<a class="btn btn-primary" ng-click="versionCtrl.changeVersion()">添加版本</a>
+
+ 			</div>
+ 			<div class="panel-body ">
+
+ 				<div class="panel-body" ng-show="!fromModules">
+ 					<div us-spinner="{radius:30,width:10,length:20}" style="height: 190px;"></div>
+ 				</div>
+
+ 				<div ng-repeat="module in fromModules" ng-if="module.modelId == 3 ">
+ 					<!-- 搜索框 --> 
+ 					<div class="group-form" >
+ 						<form class="form-inline">
+ 							<div class="col-md-6"></div>
+ 							<div class="form-group col-md-6">
+ 								<input type="text" ng-model="module.data.text" class="title-input col-md-8"  placeholder="视频名称"> 
+ 								<a class="btn btn-default col-md-4">搜索</a>
+ 								<div class="clearfix" style="margin-bottom: 20px;">
+ 									<div class="col-md-12"></div>
+ 									<div class="col-md-12 ul-border" ng-if="module.data.attr.length>
+ 										0" aria-labelledby="dropdownMenu2">
+ 										<p ng-repeat="attr in module.data.attr">
+ 											<span class="col-md-8">{{attr.videoName}}</span>
+ 										</p>
+ 									</div>
+ 								</div>
+
+ 							</div>
+ 						</form>
+ 					</div>
+ 				</div>
+
+ 				<div ng-repeat="module in fromModules">
+ 					<!-- web --> 
+ 					<div class="group-form"  ng-if="module.modelId == 4 ">
+ 						<form class="form-inline">
+ 							<div class="form-group col-md-12 text-center">
+ 								<iframe class='iframe-url'  width="90%" height="100%" load-url name={{module.data.text}}  frameborder="0" ></iframe>
+ 							</div>
+ 						</form>
+ 					</div>
+ 					<!-- 添加频道 每行一条 --> 
+ 					<div class="group-form"  ng-if="module.modelId == 1 && module.line == 1">
+ 						<form class="form-inline col-md-12">
+ 							<div class="form-group col-md-12 text-left">
+ 								<span class="ng-binding">&nbsp;&nbsp;&nbsp;&nbsp;{{module.data.text}}</span>
+ 							</div>
+
+ 							<br/> 
+ 							<ul class="col-md-10" >
+ 								<li class="form-group col-md-12 singel-channel" ng-repeat="attr in module.data.attr">
+ 									<img src="{{attr.imgUrl | errorImg }}" > 
+ 									<div class="caption pull-left">
+ 										<span>
+ 											<a>{{attr.videoName}}</a>
+ 										</span>
+ 										<span>
+ 											<a>EPG</a>
+ 										</span>
+ 									</div>
+ 								</li>
+
+ 							</ul>
+
+ 						</form>
+ 					</div>
+
+ 					<!-- 添加频道 每行二条 --> 
+ 					<div class="group-form" ng-if="module.modelId == 1 && module.line == 2">
+ 						<form class="form-inline col-md-12">
+ 							<div class="form-group col-md-12 text-left">
+ 								<span>&nbsp;&nbsp;&nbsp;&nbsp;{{module.data.text}}</span>
+ 							</div>
+ 							<br/> 
+ 							<ul class="col-md-12" >
+ 								<li class="form-group singel-channel col-md-5"  ng-repeat="attr in module.data.attr">
+
+ 									<img class="img-responsive" src="{{attr.imgUrl | errorImg }}" > 
+ 									<div class="caption pull-left">
+ 										<span>
+ 											<a>{{attr.videoName}}</a>
+ 										</span>
+ 										<span>
+ 											<a>EPG</a>
+ 										</span>
+ 										<p  ng-if="module.episode==2 && module.isNumber==1">
+ 											<button class="count-btn ">1</button>
+ 											<button class="count-btn ">2</button>
+ 											<button class="count-btn ">3</button>
+ 											<a href="javascript:;">...</a>
+ 										</p>
+ 										<p  ng-if="module.episode==2 && module.isNumber==2">
+ 											<span>{{attr.name}} 第一集</span>
+ 											<span>{{attr.name}} 第二集</span>
+ 											<span>{{attr.name}} 第三集</span>
+ 											<span>更多...</span>
+ 										</p>
+ 									</div>
+ 								</li>
+ 							</ul>
+ 						</form>
+ 					</div>
+ 					<!-- 添加直播 每行一条 --> 
+ 					<div class="group-form" ng-if="module.modelId == 2">
+ 						<!--每行一条 --> 
+ 						<form class="form-inline col-md-10" ng-if="module.line ==1">
+ 							<div class="form-group col-md-12 text-left">
+ 								<span>&nbsp;&nbsp;&nbsp;&nbsp;{{module.data.text}}</span>
+ 							</div>
+ 							<br/> 
+ 							<ul class="col-md-12">
+ 								<li class="form-group col-md-12 singel-channel" ng-repeat="attr in module.data.attr">
+ 									<img src="{{attr.imgUrl | errorImg }}" > 
+ 									<div class="caption pull-left">
+ 										<span>
+ 											<a>{{attr.videoName}}</a>
+ 										</span>
+ 										<span>
+ 											<a>EPG</a>
+ 										</span>
+ 									</div>
+ 								</li>
+ 							</ul>
+ 						</form>
+ 						<!-- 添加直播 每行二条 --> 
+ 						<form class="form-inline col-md-12" ng-if="module.line ==2">
+ 							<div class="form-group col-md-12 text-left">
+ 								<span>&nbsp;&nbsp;&nbsp;&nbsp;{{module.data.text}}</span>
+ 							</div>
+ 							<br/> 
+ 							<ul class="col-md-12">
+ 								<li class="form-group singel-channel col-md-5" ng-repeat="attr in module.data.attr">
+
+ 									<img src="{{attr.imgUrl | errorImg }}" > 
+ 									<div class="caption pull-left">
+ 										<span>
+ 											<a>{{attr.videoName}}</a>
+ 										</span>
+ 										<span>
+ 											<a>EPG</a>
+ 										</span>
+ 										<p  ng-if="module.episode==2 && module.isNumber==1">
+ 											<button class="count-btn ">1</button>
+ 											<button class="count-btn ">2</button>
+ 											<button class="count-btn ">3</button>
+ 											<a href="javascript:;">...</a>
+ 										</p>
+ 										<p  ng-if="module.episode==2 && module.isNumber==2">
+ 											<span>{{attr.name}} 第一集</span>
+ 											<span>{{attr.name}} 第二集</span>
+ 											<span>{{attr.name}} 第三集</span>
+ 											<span>更多...</span>
+ 										</p>
+ 									</div>
+ 								</li>
+ 							</ul>
+ 						</form>
+ 					</div>
+ 					<div class="group-form" ng-if="module.modelId == 5">
+ 						<form class="form-inline col-md-12">
+ 							<div class="form-group col-md-12 text-left">
+ 								<span>&nbsp;&nbsp;&nbsp;&nbsp;{{module.data.text}}</span>
+ 							</div>
+ 							<br/> 
+ 							<ul class="col-md-12" >
+ 								<li class="form-group singel-channel col-md-5"  ng-repeat="attr in module.data.attr track by $index">
+
+ 									<img class="img-responsive" src="{{attr.imgUrl | errorImg }}" > 
+ 									<div class="caption">
+ 										<a ng-if="attr" class="pull-left">{{attr.videoName}}</a>
+ 										<a ng-if="!attr" class="pull-left">系统获取</a>
+ 										<a class="pull-right" ng-if="$index!=1">推荐</a>
+ 										<a class="pull-right" ng-if="$index==1">10万人</a>
+ 										<span>
+ 											<a>EPG</a>
+ 										</span>
+ 									</div>
+ 								</li>
+ 							</ul>
+ 						</form>
+ 					</div>
+ 				</div>
+ 			</div>
+
+ 			<div class="clearfix" style="margin-bottom: 20px;"></div>
+
+ 		</div>
+ 	</div>
+
+ 	<div class="col-md-2 text-center" ng-if="toModules" style="padding-top: 150px; ">
+ 		<div class="form-group">
+ 			<a class="btn btn-primary" ng-click="versionCtrl.removeByFrom()">移动&gt;&gt;</a>
+ 		</div>
+ 		<div class="form-group">
+ 			<a class="btn btn-primary" ng-click="versionCtrl.removeByTo()">
+ 				&lt;&lt;移动</a></div>
+ 			</div>
+ 			<div class="col-md-5 text-center">
+ 				<div class="alert alert-info" ng-if="toData.title">
+ 					{{toData.title}} {{rightApp.appKeyName + rightApp.appsAppOs + rightApp.appsAppVersion}}
+ 				</div>
+ 				<div class="panel panel-default">
+ 					<div class="alert alert-info text-left">
+ 						<label width=25% ng-repeat="app in toApp">
+ 							<input type="radio" name="rightApp" ng-if="$index==0" checked="checked" ng-click="getRightModel(app)"> 
+ 							<input type="radio" name="rightApp" ng-if="$index!=0" ng-click="getRightModel(app)">{{app.appKeyName}} {{app.appsAppOs}} {{app.appsAppVersion}} &nbsp;&nbsp;</label>
+ 						<p></p>
+ 						<a class="btn btn-primary" ng-click="versionCtrl.changeModel()">选择</a>
+ 					</div>
+ 					<div class="panel-body ">
+ 					<div class="panel-body" ng-show="!toModules && toApp.length>0">
+ 					<div us-spinner="{radius:30,width:10,length:20}" style="height: 190px;"></div>
+ 				</div>
+ 						<div ng-repeat="module in toModules" ng-if="module.modelId == 3 ">
+ 							<!-- 搜索框 --> 
+ 							<div class="group-form" >
+ 								<form class="form-inline">
+ 									<div class="col-md-6"></div>
+ 									<div class="form-group col-md-6">
+ 										<input type="text" ng-model="module.data.text" class="title-input col-md-8"  placeholder="视频名称"> 
+ 										<a class="btn btn-default col-md-4">搜索</a>
+ 										<div class="clearfix" style="margin-bottom: 20px;">
+ 											<div class="col-md-12"></div>
+ 											<div class="col-md-12 ul-border" ng-if="module.data.attr.length>
+ 												0" aria-labelledby="dropdownMenu2">
+ 												<p ng-repeat="attr in module.data.attr">
+ 													<span class="col-md-8">{{attr.videoName}}</span>
+ 												</p>
+ 											</div>
+ 										</div>
+
+ 									</div>
+ 								</form>
+ 							</div>
+ 						</div>
+
+ 						<div ng-repeat="module in toModules">
+ 							<!-- web --> 
+ 							<div class="group-form"  ng-if="module.modelId == 4 ">
+ 								<form class="form-inline">
+ 									<div class="form-group col-md-12 text-center">
+ 										<iframe class='iframe-url'  width="100%" height="100%" load-url name={{module.data.text}}  frameborder="0" ></iframe>
+ 									</div>
+ 								</form>
+ 							</div>
+ 							<!-- 添加频道 每行一条 --> 
+ 							<div class="group-form"  ng-if="module.modelId == 1 && module.line == 1">
+ 								<form class="form-inline col-md-12">
+ 									<div class="form-group col-md-12 text-left">
+ 										<span class="ng-binding">&nbsp;&nbsp;&nbsp;&nbsp;{{module.data.text}}</span>
+ 									</div>
+
+ 									<br/> 
+ 									<ul class="col-md-10" >
+ 										<li class="form-group col-md-12 singel-channel" ng-repeat="attr in module.data.attr">
+ 											<img src="{{attr.imgUrl | errorImg }}" > 
+ 											<div class="caption pull-left">
+ 												<span>
+ 													<a>{{attr.videoName}}</a>
+ 												</span>
+ 												<span>
+ 													<a>EPG</a>
+ 												</span>
+ 											</div>
+ 										</li>
+
+ 									</ul>
+
+ 								</form>
+ 							</div>
+
+ 							<!-- 添加频道 每行二条 --> 
+ 							<div class="group-form" ng-if="module.modelId == 1 && module.line == 2">
+ 								<form class="form-inline col-md-12">
+ 									<div class="form-group col-md-12 text-left">
+ 										<span>&nbsp;&nbsp;&nbsp;&nbsp;{{module.data.text}}</span>
+ 									</div>
+ 									<br/> 
+ 									<ul class="col-md-12" >
+ 										<li class="form-group singel-channel col-md-5"  ng-repeat="attr in module.data.attr">
+
+ 											<img class="img-responsive" src="{{attr.imgUrl | errorImg }}" > 
+ 											<div class="caption pull-left">
+ 												<span>
+ 													<a>{{attr.videoName}}</a>
+ 												</span>
+ 												<span>
+ 													<a>EPG</a>
+ 												</span>
+ 											</div>
+ 										</li>
+ 									</ul>
+ 								</form>
+ 							</div>
+ 							<!-- 添加直播 每行一条 --> 
+ 							<div class="group-form" ng-if="module.modelId == 2">
+ 								<!--每行一条 --> 
+ 								<form class="form-inline col-md-10" ng-if="module.line ==1">
+ 									<div class="form-group col-md-12 text-left">
+ 										<span>&nbsp;&nbsp;&nbsp;&nbsp;{{module.data.text}}</span>
+ 									</div>
+ 									<br/> 
+ 									<ul class="col-md-12">
+ 										<li class="form-group col-md-12 singel-channel" ng-repeat="attr in module.data.attr">
+
+ 											<img src="{{attr.imgUrl | errorImg }}" > 
+ 											<div class="caption pull-left">
+ 												<span>
+ 													<a>{{attr.videoName}}</a>
+ 												</span>
+ 												<span>
+ 													<a>EPG</a>
+ 												</span>
+ 												<p  ng-if="module.episode==2 && module.isNumber==1">
+ 													<button class="count-btn ">1</button>
+ 													<button class="count-btn ">2</button>
+ 													<button class="count-btn ">3</button>
+ 													<button class="count-btn ">4</button>
+ 													<button class="count-btn ">5</button>
+ 													<button class="count-btn ">6</button>
+ 													<a href="javascript:;">...</a>
+ 												</p>
+ 												<p  ng-if="module.episode==2 && module.isNumber==2">
+ 													<span>{{attr.name}} 第一集</span>
+ 													<span>{{attr.name}} 第二集</span>
+ 													<span>{{attr.name}} 第三集</span>
+ 													<span>更多...</span>
+ 												</p>
+ 											</div>
+ 										</li>
+ 									</ul>
+ 								</form>
+ 								<!-- 添加直播 每行二条 --> 
+ 								<form class="form-inline col-md-12" ng-if="module.line ==2">
+ 									<div class="form-group col-md-12 text-left">
+ 										<span>&nbsp;&nbsp;&nbsp;&nbsp;{{module.data.text}}</span>
+ 									</div>
+ 									<br/> 
+ 									<ul class="col-md-12">
+ 										<li class="form-group singel-channel col-md-5" ng-repeat="attr in module.data.attr">
+
+ 											<img src="{{attr.imgUrl | errorImg }}" > 
+ 											<div class="caption pull-left">
+ 												<span>
+ 													<a>{{attr.videoName}}</a>
+ 												</span>
+ 												<span>
+ 													<a>EPG</a>
+ 												</span>
+ 											</div>
+ 										</li>
+ 									</ul>
+ 								</form>
+ 							</div>
+
+ 							<div class="group-form" ng-if="module.modelId == 5">
+ 								<form class="form-inline col-md-12">
+ 									<div class="form-group col-md-12 text-left">
+ 										<span>&nbsp;&nbsp;&nbsp;&nbsp;{{module.data.text}}</span>
+ 									</div>
+ 									<br/> 
+ 									<ul class="col-md-12" >
+ 										<li class="form-group singel-channel col-md-5"  ng-repeat="attr in module.data.attr track by $index">
+
+ 											<img class="img-responsive" src="{{attr.imgUrl | errorImg }}" > 
+ 											<div class="caption">
+ 												<a ng-if="attr" class="pull-left">{{attr.videoName}}</a>
+ 												<a ng-if="!attr" class="pull-left">系统获取</a>
+ 												<a class="pull-right" ng-if="$index!=1">推荐</a>
+ 												<a class="pull-right" ng-if="$index==1">10万人</a>
+ 												<span>
+ 													<a>EPG</a>
+ 												</span>
+ 											</div>
+ 										</li>
+ 									</ul>
+ 								</form>
+ 							</div>
+
+ 						</div>
+ 					</div>
+
+ 				</div>
+ 				<div class="clearfix" style="margin-bottom: 20px;"></div>
+ 			</div>
+ 		</div>
+
+ 		<div class="col-md-12 text-center">
+ 			<a class="btn btn-primary" ng-click="versionCtrl.save()" ng-disabled="submitStatus">保存</a>
+ 			&nbsp;&nbsp;&nbsp;&nbsp;
+ 			<a class="btn btn-primary" ng-click="itemCtrl.back()">取消</a>
+ 		</div>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link href="styles/css/all.css" rel="stylesheet">
+    <title>电视台</title>
+</head>
+<body ng-controller="ApplicationCtrl">
+<ui-view />
+</body>
+</html>
+<script src="libs/require.js"></script>
+<script>
+    //Load common code that includes config, then load the app
+    //logic for this page. D
+    // o the requirejs calls here instead of
+    //a separate file so after a build there are only 2 HTTP
+    //requests instead of three.
+    requirejs(['config'], function (config) {
+        requirejs(['appconfig', 'main']);
+    });
+</script>

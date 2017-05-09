@@ -1,0 +1,84 @@
+
+<div class="alert alert-info text-center">{{title}}</div>
+
+<form name="myform" class="form-horizontal css-form" role="form" novalidate>
+    <div class="text-center">
+        <label class="radio-inline" style="padding-right: 20px;">
+            <input type="radio" value="0" name="appChoose" ng-model="app.keyType" ng-checked="true" checked />外部应用
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="1" name="appChoose" ng-model="app.keyType"/>自用
+        </label>
+    </div>
+    <div class="form-group">
+        <div class="form-group">
+            <label class="col-md-3 control-label text-right" ng-class="{true:'has-error'}[ submitted && !myform.name.$valid ]">应用名称：</label>
+            <div class="col-md-8">
+                <input class="form-control" ng-model="app.name" required/>
+
+                    <small class="text-danger" ng-show="myform.name.$error.required && (myform.name.$dirty || submitted)">必须填入名称</small>
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-3 control-label text-right">AppKey：</label>
+            <div class="col-md-8 control-label" style="text-align: left">
+                <span ng-model="app.appKey" name="appsDescription" class="" >{{app.appKey}}</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6">
+                <label class="col-md-12">客户端类型一 ：Android</label><br/>
+                <div class="col-md-12" ng-repeat="packageName in packageAName track by $index">
+                    <label class="col-md-4 control-label" style="text-align: left;padding-left: 0;padding-right: 0;">Android包名{{$index+1}}：</label>
+                    <div class="col-md-6 control-label" style="text-align: left;padding-left: 0;padding-right: 0;">
+                        <input type="text" class="form-control" ng-model="packageName.name" />
+                    </div>
+                    <label class="col-md-2" style="padding:10px;" ng-show="packageAName.length > 1">
+                        <a href="javascript:;" ng-click="appsKeyEditCtrl.removePackage($index,1)">删除</a>
+                    </label>
+                </div>
+
+                <div class="col-md-5"></div>
+                <div class="col-md-3 control-label">
+                    <input type="button" class="form-control text-center" value="新增" ng-click="appsKeyEditCtrl.addPackage(1)"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="col-md-12">客户端类型二 ：IOS</label><br/>
+                <div class="col-md-12" ng-repeat="packageName in packageBName track by $index">
+                    <label class="col-md-4 control-label" style="text-align: left;padding-left: 0;padding-right: 0;">Bundle ID {{$index+1}}：</label>
+                    <div class="col-md-6 control-label" style="text-align: left;padding-left: 0;padding-right: 0;">
+                        <input type="text" class="form-control" ng-model="packageName.name" />
+                    </div>
+                    <label class="col-md-2" style="padding:10px;" ng-show="packageBName.length > 1">
+                        <a href="javascript:;" ng-click="appsKeyEditCtrl.removePackage($index,2)">删除</a>
+                    </label>
+                </div>
+
+                <div class="col-md-5"></div>
+                <div class="col-md-3 control-label">
+                    <input type="button" class="form-control text-center" value="新增" ng-click="appsKeyEditCtrl.addPackage(2)"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-6 text-center">
+            <a class="btn btn-primary" ng-click="appsKeyEditCtrl.checkCloseDialog()" ng-disabled="submitStatus">保存</a>
+
+        </div>
+
+        <div class="col-md-6 text-center">
+            <a class="btn btn-primary" ng-click="closeThisDialog(0)">取消</a>
+        </div>
+    </div>
+
+</form>
+
+<div class="alert alert-danger" ng-show="errorMessage!=''">{{errorMessage | errorMsg}}</div>

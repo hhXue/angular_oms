@@ -1,0 +1,181 @@
+
+<div class="alert alert-info text-center">频道屏蔽设置</div>
+
+<div class="panel-body" ng-show="loading_list">
+    <div us-spinner="{radius:30,width:10,length:20}" style="height: 190px;" class="test"></div>
+</div>
+<form name="myform" id="myform" class="form-horizontal css-form" role="form" novalidate  ng-show="!loading_list">
+
+
+    <div class="form-group ">
+        <label for="" class="col-md-2 text-right">选择应用：</label>
+        <button type="button" class="btn btn-default test" ng-model="video.appKey" data-html="1"
+                data-multiple="1" max-length="10"
+                placeholder="请选择应用"
+                data-animation="am-flip-x"
+                bs-options="appkey.appKey as appkey.appKeyName for appkey in appKeys" bs-select
+                ng-click="selcetStyle()">
+            Action <span class="caret"></span>
+        </button>
+        <small class="text-danger" ng-show="video.appKey.length == 0">
+            请选择需要屏蔽的应用
+        </small>
+    </div>
+
+    <!--<div class="form-group">-->
+        <!--<label for="" class="col-md-2 text-right">选择应用：</label>-->
+        <!--<div class="col-md-10"  >-->
+            <!--<app-version-select-->
+                    <!--type="video"-->
+                    <!--id="tablet.id"-->
+                    <!--returnValue="app.appId"-->
+                    <!--app-ver-list="tabVersion">-->
+
+            <!--</app-version-select>-->
+        <!--</div>-->
+        <!--<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>-->
+    <!--</div>-->
+
+
+    <!--地域选择-->
+    <div class="form-group " >
+        <label for="" class="col-md-2 text-right">地域选择：</label>
+        <div  class="col-md-4 " style="max-height: 350px;overflow-y: auto;">
+            <div
+                 ivh-treeview="bindVideoCtrl.stuff"
+                 ivh-treeview-on-toggle="bindVideoCtrl.toggleCallback(ivhNode, ivhIsExpanded, ivhTree)"
+                 ivh-treeview-on-cb-change="bindVideoCtrl.otherAwesomeCallback(ivhNode, ivhIsSelected, ivhTree)"
+                    >
+            </div>
+        </div>
+        <div class="col-md-5" style="max-height: 350px;overflow-y: auto;">
+            <div class="col-md-3" >
+                <span class="text-danger">已选择地域：</span>
+            </div>
+            <div class="col-md-6">
+                <span class="text-warning" ng-repeat="checkArea in checkAreas">
+                    <button style="width:65%;border:1px solid  #9E9E9E; margin-bottom: 10px;">{{checkArea.name}}</button>&nbsp;&nbsp;
+                    <a href="javascript:;" ng-click="bindVideoCtrl.removeCity(checkArea,$index)">取消</a>
+                </span>
+            </div>
+            <small class="text-danger" ng-show="checkAreas.length == 0">
+                请选择需要屏蔽的城市
+            </small>
+
+        </div>
+
+
+    </div>
+
+    <div class="form-group" >
+        <label class="col-md-2 text-right">渠道选择：</label>
+        <div class="col-md-9">
+            <a href="javascript:;"  class="btn btn-default col-md-2 mars" ng-class="{true:'btn-warning'}[marketList.length == video.marketId.length]" ng-click="bindVideoCtrl.showMarket('all')">
+                全部
+                <!--<span ng-if="marketList.length == video.marketId.length "  class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
+            </a><br><br>
+            <a href="javascript:;" class="btn btn-default mar" ng-class="{true:'btn-warning'}[video.marketId.indexOf(market.marketId.toString()) > -1]"  ng-repeat="market in marketList"  ng-click="bindVideoCtrl.showMarket(market,$event)">
+                {{ market.name }}
+                <!--<span ng-if="video.marketId.indexOf(market.marketId.toString()) > -1" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>-->
+            </a>
+        </div>
+        <small class="text-danger" ng-show="video.marketId.length == 0 ">
+            请选择需要屏蔽的渠道
+        </small>
+
+        <!--<div class="col-md-12" ng-repeat="marketTime in npmMarketTimes" style="margin:15px;">-->
+            <!--<span class="col-md-3 text-right">频道屏蔽时段：</span>-->
+            <!--<div class="col-md-9">-->
+
+                <!--<label class="sr-only" for="startTime" >开始年月日</label>-->
+                <!--<input class="form-control" style="display: inline;width:15%" ng-model="marketTime.startTime" id="startTime" type="text" placeholder="开始年月日"-->
+                       <!--data-autoclose="1" bs-datepicker-->
+                       <!--date-format="yyyy-MM-dd"/>-->
+                <!--<label class="sr-only" for="startTime" >时分秒</label>-->
+                <!--<input class="form-control" style="display: inline;width:10%" ng-model="marketTime.startTime" data-autoclose="1" placeholder="时分秒" bs-timepicker type="text"-->
+                       <!--time-format="HH:mm" minute-step="1" >-->
+                <!--<span> -- </span>-->
+                <!--<label class="sr-only" for="endTime" >截止年月日</label>-->
+                <!--<input class="form-control" style="display: inline;width:15%"  ng-model="marketTime.endTime" id="endTime" type="text" placeholder="截止年月日"-->
+                       <!--data-autoclose="1" bs-datepicker-->
+                       <!--date-format="yyyy-MM-dd"/>-->
+                <!--<label class="sr-only" for="startTime" >时分秒</label>-->
+                <!--<input class="form-control" style="display: inline;width:10%"  ng-model="marketTime.endTime" data-autoclose="1" placeholder="时分秒" bs-timepicker type="text"-->
+                       <!--time-format="HH:mm" minute-step="1" >-->
+
+                <!--屏蔽原因：-->
+                <!--<select class="" style="padding:3px;" name="" id="" ng-model="marketTime.reason">-->
+                    <!--<option value="1">内容</option>-->
+                    <!--<option value="2">系统维护</option>-->
+                    <!--<option value="3">其它原因</option>-->
+                <!--</select>-->
+
+                <!--<a href="javascript:;" class="text-right" ng-click="bindVideoCtrl.removeMarketTime($index,marketTime)">删除</a>-->
+                <!--<small class="text-danger" ng-show="marketTime.endTime < marketTime.startTime" >结束时间必须大于开始时间</small>-->
+
+            <!--</div>-->
+
+
+        <!--</div>-->
+        <!--<a href="javascript:;" class="col-md-10 text-right" ng-click="bindVideoCtrl.addMarketTime(market)">添加时段</a>-->
+
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="" class="col-md-2 text-right">屏蔽时段：</label>
+    </div>
+    <div class="form-group" >
+        <div class="form-group" ng-repeat="videoTime in videoTimes">
+            <label class="col-md-1"></label>
+            <label class="sr-only" for="startTime" >开始年月日</label>
+            <input class="form-control" style="display: inline;width:15%" ng-model="videoTime.startTime" id="startTime" type="text" placeholder="开始年月日"
+                   data-autoclose="1" bs-datepicker
+                   date-format="yyyy-MM-dd"/>
+            <label class="sr-only" for="startTime" >时分秒</label>
+            <input class="form-control" style="display: inline;width:10%" ng-model="videoTime.startTime" data-autoclose="1" placeholder="时分秒" bs-timepicker type="text"
+                   time-format="HH:mm" minute-step="1" >
+            <span> -- </span>
+            <label class="sr-only" for="endTime" >截止年月日</label>
+            <input class="form-control" style="display: inline;width:15%"  ng-model="videoTime.endTime" id="endTime" type="text" placeholder="截止年月日"
+                   data-autoclose="1" bs-datepicker
+                   date-format="yyyy-MM-dd"/>
+            <label class="sr-only" for="startTime" >时分秒</label>
+            <input class="form-control" style="display: inline;width:10%"  ng-model="videoTime.endTime" data-autoclose="1" placeholder="时分秒" bs-timepicker type="text"
+                   time-format="HH:mm" minute-step="1" >
+
+            &nbsp;&nbsp;&nbsp;屏蔽原因：
+            <select class="" style="padding:3px;" ng-model="videoTime.reason">
+                <option value="1">内容</option>
+                <option value="2">版权</option>
+                <option value="3">其它原因</option>
+            </select>
+
+            <a href="javascript:;" class="text-right" ng-click="bindVideoCtrl.removeVideoTime($index)">删除</a>
+            <small class="text-danger" ng-if="videoTime.endTime < videoTime.startTime">结束时间必须大于开始时间</small>
+
+        </div>
+
+        <!--<div class="form-group" ng-show="isShow==0 || videoTimes.length == 0" >-->
+            <!--<label for="" class="col-md-6 text-danger text-right">屏蔽时段不为空！</label>-->
+        <!--</div>-->
+
+        <a href="javascript:;" class="col-md-9 text-right" ng-click="bindVideoCtrl.addVideoTime()">添加时段</a>
+    </div>
+
+	<div class="form-group">
+		<div class="col-md-6 text-center">
+			<button class="btn btn-primary" ng-click="bindVideoCtrl.checkCloseDialog()" ng-disabled="submitStatus">保存</button>
+		</div>
+
+		<div class="col-md-6 text-center">
+			<button class="btn btn-primary" ng-click="itemCtrl.back()">取消</button>
+		</div>
+	</div>
+</form>
+
+<div class="alert alert-danger" ng-show="errorMessage!=''">
+{{errorMessage}}
+</div>

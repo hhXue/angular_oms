@@ -1,0 +1,10 @@
+nav a{outline:0 none}.alert h4{margin-bottom:0}.pagination{margin:0 0 20px}.list-unstyled{padding:5px 0 0 30px;margin:0}a.se-menu{outline:0 none}.se-menu-li{padding:5px 10px;text-align:left}.se-menu-li.active{text-align:left;color:#555;font-weight:700;outline:0 none}.se-menu-li a.active,.se-menu-li.active a{color:#555;outline:0 none}.list-group ul.list-unstyled{border-color:#ddd;border-width:1px;border-style:solid}.cursor{cursor:pointer}.navbar{margin-bottom:0}.row.font-12{font-size:12px}.ngdialog.ngdialog-theme-default .ngdialog-content{width:600px}.a_point td{cursor:pointer}.a_point td:hover{color:#337ab7}td.a_no{cursor:auto}td.a_no:hover{color:#000}
+.relatives{
+    border:1px solid #ddd;
+    border-width: 2px 2px 0 2px;
+    background-color: #87CEFA !important;
+}
+.nav li {
+    padding:15px 0;
+    line-height: 20px;
+}

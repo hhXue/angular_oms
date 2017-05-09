@@ -1,0 +1,38 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation"><div class="container-fluid"><div class="navbar-header col-md-2"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="javascript:;;">手机电视运营系统</a></div><div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"><ul class="nav navbar-nav"><!-- <li ng-repeat="nav in navList" ng-class="nav.curStyle">
+				<a href="{{nav.method}}">
+					Link
+					<span class="sr-only">(current)</span>
+				</a>
+			</li>
+			--><!-- <li ng-class="{active: $state.includes('user.home')}">
+			<a ui-sref="user.home">Home</a>
+		</li>
+		--><!-- <li ng-class="{active: $state.includes('user.manage')}">
+		<a ui-sref="user.manage">Manage</a>
+	</li>
+	--><li ng-repeat="nav in navList" ng-class="{active: $state.includes('site.'+'{{nav.name}}')}"><a ui-sref="site.{{nav.name}}">{{nav.alias}}</a></li></ul><ul class="nav navbar-nav navbar-right"><li><a ng-click="">Hi,{{userObj.personName}}!</a></li><li class=""><a href="" ng-click="logout()">exit</a></li><!--
+				<li>
+	<a href="javascript:;;">Link</a>
+</li>
+<li class="dropdown">
+	<a href="javascript:;;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+		Dropdown
+		<span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" role="menu">
+		<li>
+			<a href="javascript:;;">Action</a>
+		</li>
+		<li>
+			<a href="javascript:;;">Another action</a>
+		</li>
+		<li>
+			<a href="javascript:;;">Something else here</a>
+		</li>
+		<li class="divider"></li>
+		<li>
+			<a href="javascript:;;">Separated link</a>
+		</li>
+	</ul>
+</li>
+--></ul></div></div></nav>

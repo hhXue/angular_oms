@@ -1,0 +1,45 @@
+
+<div class="alert alert-info text-center">{{title}}</div>
+
+<form name="myform" class="form-horizontal css-form" role="form" novalidate>
+    <div class="form-group" ng-class="{true:'has-error'}[ submitted && !myform.marketName.$valid ]">
+        <label for="marketName" class="col-md-3 control-label text-right">应用市场名称：</label>
+        <div class="col-md-9">
+            <input type="text" ng-model="market.name" name="marketName" id="marketName" class="form-control" required/>
+            <div>
+                <small class="text-danger" ng-show="myform.marketName.$error.required && submitted ">必须填入市场名称</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{true:'has-error'}[ submitted && !myform.marketId.$valid ]">
+        <label for="marketId" class="col-md-3 control-label text-right">MarketId：</label>
+        <div class="col-md-9">
+            <input type="text" ng-model="market.marketId" name="marketId" id="marketId" class="form-control" required/>
+            <div>
+                <small class="text-danger" ng-show="myform.marketId.$error.required && submitted ">必须填入MarketId</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" >
+        <label for="marketNote" class="col-md-3 control-label text-right">备注：</label>
+        <div class="col-md-9">
+            <input type="text" ng-model="market.note" name="marketNote" id="marketNote" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 text-center">
+            <a class="btn btn-primary" ng-click="marketEditCtrl.checkCloseDialog()" ng-disabled="submitStatus">保存</a>
+
+        </div>
+
+        <div class="col-md-6 text-center">
+            <a class="btn btn-primary" ng-click="closeThisDialog(0)">取消</a>
+        </div>
+    </div>
+
+</form>
+
+<div class="alert alert-danger" ng-show="errorMessage!=''">{{errorMessage | errorMsg}}</div>

@@ -1,0 +1,10 @@
+bower_components
+node_modules
+
+build/
+#dist/
+app-back/
+
+# IDE specifics
+.idea/
+

@@ -1,0 +1,57 @@
+<div class="alert alert-info">
+	<h4>角色管理</h4>
+</div>
+<div class="row">
+	<div class="col-md-4">
+		<a class="btn btn-primary" ng-if="methods.create.name" ng-click="itemCtrl.createItem()">新增</a>
+		<a class="btn btn-primary" ng-if="methods.dels.name" ng-click="itemCtrl.deleteItem()">删除</a>
+
+	</div>
+	<div class="col-md-8" ng-if="methods.index.name">
+		<form class="form-inline pull-right" role="form">
+			<div class="form-group">
+				<label class="sr-only" for="searchCpName">角色名称</label>
+				<input type="text" class="form-control" ng-model="searchParams.roleName" id="searchCpName" placeholder="角色名称" ng-enter="itemCtrl.search()"></div>
+			<a type="submit" class="btn btn-primary" ng-click="itemCtrl.search()">搜索</a>
+		</form>
+	</div>
+</div>
+<div class="clearfix" style="margin-bottom: 20px;"></div>
+
+<div id="alert_info" ng-show="search_error">
+	<div class="alert alert-danger">{{search_error_msg}}</div>
+</div>
+<table class="table table-bordered table-hover table-striped">
+	<tr>
+		<th width="2%">
+			<input type="checkbox" ng-model="selectAll" ng-click="toggleAll()" />
+		</th>
+		<th width="30">角色名称</th>
+		<th width="30%">创建时间</th>
+		<th width="38%">操作</th>
+	</tr>
+	<tr>
+		<td colspan="7" ng-show="loading_list">
+			<div style="position: relative;height:50px;">
+				<span us-spinner ></span>
+			</div>
+		</td>
+	</tr>
+	<tr dir-paginate="item in items | itemsPerPage: itemsPerPage" total-items="totalItems">
+		<td>
+			<input type="checkbox" value="{{ item.id }}" name="ids[]" ng-model="item.checked" ng-checked="selectAll" ng-click="toggleSelection(item.id)" />
+		</td>
+		<td>{{ item.roleName }}</td>
+
+		<td>
+			{{ item.roleCreatedAt!=0 ? (item.roleCreatedAt*1000 | date:'yyyy-MM-dd HH:mm:ss') : '' }}
+		</td>
+		<td>
+			<!--  {{item.roleId}} -->
+			<a class="btn btn-default"  ui-sref="site.oms.system.permissionrole({roleId:item.id})">设置权限</a>
+			<a class="btn btn-default" ng-click="itemCtrl.editItem(item)">编辑</a>
+			<a class="btn btn-default" ng-click="itemCtrl.deleteItem(item.id, $event)">删除</a>
+		</td>
+	</tr>
+</table>
+<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>

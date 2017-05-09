@@ -1,0 +1,85 @@
+
+<div class="clearfix" style="margin-bottom: 20px;"></div>
+<div class="col-md-12 alert alert-info" style=" margin-bottom: 0; padding:10px;">
+	<!--<a href="javascript:;;" ng-repeat="tab in tabItem" class="" ng-click="clientCtrl.changeItem(tab)" rm-title  style="margin-right:20px;">-->
+        <a href="javascript:;;"   ng-repeat="tab in tabItem" class="btn" ng-click="clientCtrl.changeItem(tab)" rm-title  style="margin-bottom: 0; font-weight: bold;">
+            <span style="padding-right:15px; ">{{tab.tabName}} </span>|
+        </a>
+    <!--</a>-->
+</div>
+<div class="clearfix" style="margin-bottom: 20px;"></div>
+<div class="alert alert-info" ng-if="titleName">
+	<h4>{{titleName}}管理</h4>
+</div>
+
+<div class="clearfix" style="margin-bottom: 20px;"></div>
+<div class="row" ng-if="searchParams.tabletId">
+	<div class="col-md-4">
+		<a class="btn btn-primary" ui-sref="site.oms.client.create({targetId:-1,tabletId:searchParams.tabletId})" ng-if="methods.create.name">{{ methods.create.alias }}</a>
+		<a class="btn btn-primary" ng-click="deleteAll()" ng-if="methods.dels.name">{{ methods.dels.alias }}</a>
+	</div>
+	<div class="col-md-8" ng-if="methods.index.name">
+		<form class="form-inline pull-right" role="form">
+			<div class="form-group">
+				<label class="sr-only" for="searchCpName">名称</label>
+				<input type="text" class="form-control" ng-model="searchParams.name" id="name" ng-enter="itemCtrl.search()" placeholder="名称"></div>
+			<a type="submit" class="btn btn-primary" ng-click="itemCtrl.search()">搜索</a>
+		</form>
+	</div>
+</div>
+
+<div class="clearfix" style="margin-bottom: 20px;"></div>
+
+<div class="btn-group btn-group-justified title-div" ng-if="searchParams.tabletId" role="group" aria-label="Justified button group">
+	<a href="javascript:;;" class="btn btn-default" ck-status name=""  role="button" ng-if="methods.wirte.name">编辑</a>
+	<a href="javascript:;;" class="btn btn-default" ck-status name="3" role="button" ng-if="methods.noexamine.name">待审核</a>
+	<a href="javascript:;;" class="btn btn-default" ck-status name="1" role="button" ng-if="methods.examine.name">审核通过</a>
+	<a href="javascript:;;" class="btn btn-default" ck-status name="2" role="button" ng-if="methods.reject.name">驳回</a>
+</div>
+
+<div class="clearfix" style="margin-bottom: 20px;"></div>
+
+<div id="alert_info" ng-show="search_error">
+	<div class="alert alert-danger">{{search_error_msg}}</div>
+</div>
+<table class="table table-bordered table-hover table-striped" ng-if="searchParams.tabletId">
+	<tr>
+		<th class="text-center" ng-if="methods.update.name" width="2%">
+			<input type="checkbox" ng-model="selectAll" ng-change="clientCtrl.changeCk(this)" ng-click="toggleAll()" />
+		</th>
+		<th class="text-center" width="10%">名称</th>
+		<th class="text-center" width="10%">最后修改人</th>
+		<th class="text-center" width="15%">最后修改时间</th>
+		<th class="text-center" ng-if="methods.update.name" width="10%">支持应用</th>
+		<th class="text-center" ng-if="methods.update.name" width="50%">操作</th>
+	</tr>
+	<tr>
+		<td  colspan="7" ng-show="loading_list">
+			<div style="position: relative;height:50px;">
+				<span us-spinner ></span>
+			</div>
+		</td>
+	</tr>
+	<tr dir-paginate="item in items | itemsPerPage: itemsPerPage" total-items="totalItems">
+		<td ng-if="methods.update.name" class="text-center">
+			<input type="checkbox" value="{{ item.id }}" name="ids[]" ng-model="item.checked" ng-checked="selectAll" ng-click="toggleSelection(item.id)" />
+		</td>
+		<td class="text-center">{{ item.name }}</td>
+		<td class="text-center">{{ item.userName }}</td>
+		<td class="text-center">
+			{{ item.updatedAt!=0 ? (item.updatedAt*1000 | date:'yyyy-MM-dd HH:mm:ss') : '' }}
+		</td>
+		<td ng-if="methods.update.name" class="text-center">
+			<a ui-sref="site.oms.client.version({clientId:item.id,nameIndex:nameIndex,tabletId:searchParams.tabletId})">设置</a>
+		</td>
+		<td class="text-center" ng-if="methods.update.name">
+			<a class="btn btn-default" ng-if="item.status == 3" ng-click="clientCtrl.edit(item,1)" >通过</a>
+			<a class="btn btn-default" ng-if="item.status == 3 " ng-click="clientCtrl.edit(item,2)" >驳回</a>
+			<a class="btn btn-default" ng-if="item.status == 0 || item.status==2" ng-click="clientCtrl.edit(item,3)" >送审</a>
+			<a class="btn btn-default" ng-if="searchParams.status == '' || searchParams.status ==null || searchParams.status ==2"  ng-click="itemCtrl.deleteItem(item.id, $event)" >删除</a>
+			<a class="btn btn-default" ng-if="item.status != 3" ui-sref="site.oms.client.create({targetId:item.id,tabletId:searchParams.tabletId})" >编辑</a>
+			<a class="btn btn-default" ng-click="clientCtrl.modelShow(item)" >预览</a>
+		</td>
+	</tr>
+</table>
+<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>

@@ -1,0 +1,45 @@
+<div class="alert alert-info text-center">{{title}}</div>
+
+<form name="myform" id="myform"  class="form-horizontal  css-form" role="form" novalidate>
+    <!--定时设置-->
+        <div class="form-group" ng-repeat="vod in vods track by $index"  ng-class="{true:'has-error'}[ submitted && !myform.setTimes.$valid ]">
+            <label class="col-md-2 control-label text-right">定时{{$index+1}}：</label>
+            <div class="col-md-5" style="padding-right:0;">
+                <div style="width:50%; float:left;margin-right:5px;">
+                    <input size="20" class="form-control"  ng-model="vod.dates" name="setTimes" data-autoclose="1" placeholder="起始年月日" bs-datepicker type="text"
+                    date-format="yyyy-MM-dd" date-type="number">
+                    <!--<small class="text-danger" ng-show="myform.setTimes.$error.required && (myform.setTimes.$dirty || submitted)">-->
+                        <!--不能为空-->
+                    <!--</small>-->
+                </div>
+                <div style="width:40%;float:left">
+                    <input size="8" class="form-control"  ng-model="vod.startTime" name="setTimes" data-autoclose="1" placeholder="起始时间" bs-timepicker type="text"
+                    time-format="HH:mm" minute-step="1" date-type="number">
+                </div>&nbsp;~
+            </div>
+
+            <div class="col-md-3" style="padding-left:0;">
+
+                <div style="width:70%;float:left">
+                    <input size="8" class="form-control"  ng-model="vod.endTime" name="setTime" data-autoclose="1" placeholder="结束时间" bs-timepicker type="text"
+                    time-format="HH:mm" minute-step="1" date-type="number">
+                </div>
+            </div>
+            <a class="btn " ng-click="changeCtrl.deleteTime($index)" type="submit">删除</a>
+
+        </div>
+	<div class="clearfix"></div>
+
+</form>
+<div class="form-group">
+	<div class="col-md-5 text-center">
+		<a class="btn btn-primary" ng-click="changeCtrl.checkCloseDialog(vods)" ng-disabled="submitStatus">保存</a>
+	</div>
+	<div class="col-md-5 text-center">
+		<a class="btn btn-primary" ng-click="closeThisDialog(0)">取消</a>
+	</div>
+    <div class="col-md-2 text-right">
+        <a class="btn btn-primary" ng-click="changeCtrl.addTime()">添加</a>
+    </div>
+</div>
+<div class="clearfix" style="margin-bottom: 20px;"></div>

@@ -1,0 +1,73 @@
+<div class="alert alert-info">
+    <h4>标签管理</h4>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <a class="btn btn-primary" ng-click="itemCtrl.createItem()" ng-if="methods.create.name">新增</a>
+        <a class="btn btn-primary" ng-click="deleteAll()" ng-if="methods.dels.name">删除</a>
+    </div>
+
+    <div class="col-md-8" ng-if="methods.index.name">
+        <form class="form-inline pull-right" role="form">
+            <div class="form-group">
+                <label class="sr-only" for="searchTagNmae">标签名称</label>
+                <input type="text" class="form-control" ng-model="searchParams.tagName" id="searchTagNmae" placeholder="标签名称">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="searchTag">全部</label>
+                <select class="form-control" ng-model="searchParams.tagType" ng-change="itemCtrl.search()" id="searchTag">
+                    <option value="">全部</option>
+                    <option value="1">频道标签</option>
+                    <option value="2">栏目标签</option>
+                    <option value="3">节目标签</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="itemCtrl.search()">搜索</button>
+        </form>
+
+    </div>
+
+
+</div>
+
+<div class="clearfix" style="margin-bottom: 20px;"></div>
+
+<div id="alert_info" ng-show="search_error">
+    <div class="alert alert-danger">{{search_error_msg}}</div>
+</div>
+
+
+<table class="table table-bordered table-hover table-striped">
+    <tr>
+        <th width="2%"><input type="checkbox" ng-model="selectAll" ng-click="toggleAll()" /></th>
+        <th width="20%">标签名称</th>
+        <th width="20%">上级标签</th>
+        <th width="20%">分类</th>
+        <th width="38%">操作</th>
+
+    </tr>
+
+    <tr>
+        <td colspan="7" ng-show="loading_list">
+            <div style="position: relative;height:50px;">
+                <span us-spinner > </span>
+            </div>
+        </td>
+    </tr>
+
+    <tr dir-paginate="item in items | itemsPerPage: itemsPerPage" total-items="totalItems">
+        <td><input type="checkbox" value={{item.id}} name="ids[]" ng-model="item.checked" ng-checked="selectAll" ng-click="toggleSelection(item.id)" /></td>
+        <td>{{ item.tagName }}</td>
+        <td>{{ item.pTag.name }}</td>
+        <td>{{ tagTypes[item.tagType] }}</td>
+        <td>
+            <a class="btn btn-default" ng-click="itemCtrl.editItem(item)">编辑</a>
+            <a class="btn btn-default" ng-click="itemCtrl.deleteItem(item.id, $event)" >删除</a>
+            <span class="btn btn-default"  style="position: relative;height:35px;width:4em;display:none;">
+                <span us-spinner="{radius:1,lenth:4,width:2}" spinner-key="spinner_{{item.id}}"></span>
+            </span>
+        </td>
+    </tr>
+</table>
+<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>

@@ -1,0 +1,67 @@
+<div class="alert alert-info">
+	<h4>应用管理</h4>
+</div>
+<div class="row">
+
+	<div class="col-md-4" >
+		<a class="btn btn-primary" ng-click="itemCtrl.createItem()" ng-if="methods.create.name">新增应用</a>
+	</div>
+
+	<div class="col-md-8" ng-if="methods.index.name">
+		<form class="form-inline pull-right" role="form">
+			<div class="form-group">
+				<label class="sr-only" for="searchVersion">应用名称</label>
+				<input type="text" class="form-control" ng-model="searchParams.name"  id="searchVersion" placeholder="应用名称" ng-enter="itemCtrl.search()"></div>
+			<div class="form-group">
+				<label class="sr-only" for="searchCreater">创建人</label>
+				<input type="text" class="form-control" ng-model="searchParams.userName" ng-enter="itemCtrl.search()" id="searchCreater" placeholder="创建人"></div>
+
+
+			<a type="submit" class="btn btn-primary" ng-click="itemCtrl.search()">搜索</a>
+		</form>
+	</div>
+
+</div>
+
+<div class="clearfix" style="margin-bottom: 20px;"></div>
+
+<div id="alert_info" ng-show="search_error">
+	<div class="alert alert-danger">{{search_error_msg}}</div>
+</div>
+
+<table class="table table-bordered table-hover table-striped">
+	<tr>
+		<th width="5%">应用 ID</th>
+		<th width="10%">应用名称</th>
+		<th width="10%">创建人</th>
+		<th width="15%">创建时间</th>
+		<th width="5%">状态</th>
+		<th width="35%">操作</th>
+	</tr>
+	<tr>
+		<td colspan="7" ng-show="loading_list">
+			<div style="position: relative;height:50px;">
+				<span us-spinner ></span>
+			</div>
+		</td>
+	</tr>
+	<tr ng-repeat="item in items "><!--dir-paginate="item in items | itemsPerPage: itemsPerPage" total-items="totalItems"-->
+		<td>{{ item.id }}</td>
+		<td>{{ item.name }}</td>
+		<td>{{ item.userName }}</td>
+		<td>
+			{{ item.createdAt!=0 ? (item.createdAt*1000 | date:'yyyy-MM-dd HH:mm:ss') : '' }}
+		</td>
+        <td>{{ (item.status == 1) ? '允许':'不允许' }}</td>
+		<td>
+			<a class="btn btn-default" ng-show="item.status==0" ng-click="itemCtrl.changeStatus(item,1)"  ng-if="methods.updatestatus.name">允许</a>
+			<a class="btn btn-default" ng-show="item.status==1" ng-click="itemCtrl.changeStatus(item,0)"  ng-if="methods.updatestatus.name">不允许</a>
+			<a class="btn btn-default" ng-click="itemCtrl.editItem(item)" ng-if="methods.update.name">编辑</a>
+			<a class="btn btn-default" ng-click="itemCtrl.deleteItem(item.id, $event)" ng-if="methods.dels.name">删除</a>
+			<a class="btn btn-default" ng-click="appsKeyCtrl.operation(item,1)" >查看频道</a>
+			<a class="btn btn-default" ng-click="appsKeyCtrl.operation(item,0)" >查看栏目</a>
+			<a class="btn btn-default" ui-sref="site.oms.apps.apps({appsAppId:item.id,titleName:item.name})" ng-if="methods.appsindex.name">版本管理</a>
+		</td>
+	</tr>
+</table>
+<!--<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>-->

@@ -1,0 +1,76 @@
+.bar {
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  color: #000;
+  display: table;
+  min-height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.8rem;
+  text-align: center;
+  background: #f5f5f5;
+}
+.bar .pull-left {
+  padding-left: 10px;
+  font-size: 1.6rem;
+  font-weight: 400;
+  float: left !important;
+}
+.bar .pull-left .iconfont {
+  display: block;
+  height: 4.5rem;
+  float: left;
+  margin-right: 0.5rem;
+}
+.bar .pull-left .iconfont img {
+  width: 1.3rem;
+  height: 2.2rem;
+  vertical-align: middle;
+}
+.bar .title {
+  position: absolute;
+  text-align: center;
+  white-space: nowrap;
+  right: 80px;
+  left: 80px;
+  width: auto;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+main .player {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-bottom: 1px solid #e2e2e2;
+}
+main .player .head_img {
+  float: left;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-image: url(../img/big.jpeg);
+  background-size: 100% 100%;
+  margin-top: 1rem;
+  margin-left: 1.4rem;
+}
+main .player .message {
+  float: left;
+  margin-top: 2rem;
+  margin-left: 1.4rem;
+}
+main .player .message .nick_name {
+  font-size: 1.6rem;
+  color: #333333;
+  line-height: 1.6rem;
+}
+main .player .message .time {
+  margin-top: 0.3rem;
+  font-size: 1.3rem;
+  color: #949494;
+  line-height: 1.3rem;
+}
+/*# sourceMappingURL=apply.css.map */

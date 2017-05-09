@@ -1,0 +1,24 @@
+
+<div class="alert alert-info text-center">{{title}}</div>
+
+<form name="myform" class="form-horizontal css-form" role="form" novalidate>
+
+    <div class="form-group" ng-if="title=='版本列表'" style="margin-left:20px;">
+        <div class="col-md-6 " ng-repeat="item in items">
+            <label class="control-label">
+                {{item.appKeyName}}&nbsp;&nbsp;{{item.appsAppOs}}&nbsp;&nbsp;{{item.appsAppVersion}}
+                <!--<span ng-if="!item.tagName">错误数据</span>-->
+            </label>
+        </div>
+        <!--<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>-->
+    </div>
+    <div class="form-group" ng-if="title=='模块版本列表'" style="margin-left:20px;">
+        <div class="col-md-6 " ng-repeat="item in items">
+            <label class="control-label">
+                {{item.appKeyName}}&nbsp;&nbsp;{{item.appsAppOs}}&nbsp;&nbsp;{{item.appsAppVersion}}
+                <!--<span ng-if="!item.tagName">错误数据</span>-->
+            </label>
+        </div>
+    </div>
+
+</form>

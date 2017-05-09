@@ -1,0 +1,443 @@
+{
+	"sessionId": 1,
+	"userId": 1,
+	"userName": 1,
+	"userRole": "admin",
+	"authKey": "",
+	"systems": [
+	{
+		"name": "oms",
+		"alias": "OMS",
+		"modules":[
+			{
+				"name": "oms.home",
+				"alias": "用户概况",
+				"controllers": [] ,
+				"methods": [{
+							"name": "create",
+							"alias": "添加权限"
+						},{
+							"name": "update",
+							"alias": "编辑"
+						},{
+							"name": "read",
+							"alias": "权限列表"
+						},{
+							"name": "delete",
+							"alias": "删除"
+						}]
+			},
+			{
+				"name": "oms.system",
+				"alias": "权限管理",
+				"controllers": [
+					{
+						"name": "oms.system.permission",
+						"alias": "权限管理",
+						"methods": [{
+							"name": "create",
+							"alias": "添加权限"
+						},{
+							"name": "update",
+							"alias": "编辑"
+						},{
+							"name": "read",
+							"alias": "权限列表"
+						},{
+							"name": "delete",
+							"alias": "删除"
+						}]
+					},
+					{
+						"name": "oms.system.role",
+						"alias": "角色管理",
+						"methods": [{
+							"name": "create",
+							"alias": "添加权限"
+						},{
+							"name": "update",
+							"alias": "编辑"
+						},{
+							"name": "read",
+							"alias": "权限列表"
+						},{
+							"name": "delete",
+							"alias": "删除"
+						}]
+					},
+					{
+						"name": "oms.system.user",
+						"alias": "账号管理",
+						"methods": []
+					},
+					{
+						"name": "oms.system.permissionrole",
+						"alias": "设置权限",
+						"methods": []
+					}
+
+				]
+			},
+            {
+                "name": "oms.apps",
+                "alias": "应用管理",
+                "controllers": [],
+                "methods": [{
+							"name": "create",
+							"alias": "添加权限"
+						},{
+							"name": "update",
+							"alias": "编辑"
+						},{
+							"name": "read",
+							"alias": "权限列表"
+						},{
+							"name": "delete",
+							"alias": "删除"
+						},{
+				  			"name": "forceUpdate",
+				  			"alias": "强制升级"
+						}]
+            },
+            {
+            	"name": "oms.cps",
+            	"alias": "CP管理",
+            	"controllers":[
+            		{
+						"name": "oms.cps.cps",
+						"alias": "列表管理",
+						"methods": [{
+							"name": "create",
+							"alias": "添加权限"
+						},{
+							"name": "update",
+							"alias": "编辑"
+						},{
+							"name": "read",
+							"alias": "权限列表"
+						},{
+							"name": "delete",
+							"alias": "删除"
+						}]
+					},
+					{
+						"name": "oms.cps.channel",
+						"alias": "频道管理",
+						"methods": [{
+							"name": "create",
+							"alias": "添加权限"
+						},{
+							"name": "update",
+							"alias": "编辑"
+						},{
+							"name": "read",
+							"alias": "权限列表"
+						},{
+							"name": "delete",
+							"alias": "删除"
+						}]
+					}
+				]
+			},
+			{
+				"name": "oms.basic",
+				"alias": "基础管理",
+				"controllers": [
+					{
+						"name": "oms.basic.property",
+						"alias": "属性管理",
+						"methods": [{
+							"name": "create",
+							"alias": "新增属性"
+						},{
+							"name": "update",
+							"alias": "编辑"
+						},{
+							"name": "read",
+							"alias": "权限列表"
+						},{
+							"name": "delete",
+							"alias": "删除"
+						}]
+					},
+					{
+						"name": "oms.basic.channelClass",
+						"alias": "频道分类管理",
+						"methods": ["create","update","read","delete"]
+					},
+					{
+						"name": "oms.basic.tag",
+						"alias": "标签管理",
+						"methods": []
+					}
+				]
+			},
+          {
+            "name": "oms.contents",
+            "alias": "内容管理",
+            "controllers": [
+              {
+                "name": "oms.contents.epg",
+                "alias": "EPG管理",
+                "methods": [{
+                  "name": "create",
+                  "alias": "添加权限"
+                },{
+                  "name": "update",
+                  "alias": "编辑"
+                },{
+                  "name": "read",
+                  "alias": "权限列表"
+                },{
+                  "name": "delete",
+                  "alias": "删除"
+                }]
+              }
+            ,{
+                    "name": "oms.contents.program",
+                    "alias": "编辑节目单",
+                    "methods": [{
+                      "name": "create",
+                      "alias": "添加权限"
+                    },{
+                      "name": "update",
+                      "alias": "编辑"
+                    },{
+                      "name": "read",
+                      "alias": "权限列表"
+                    },{
+                      "name": "delete",
+                      "alias": "删除"
+                    }]
+                  }
+              ,{
+                "name": "oms.contents.show",
+                "alias": "栏目管理",
+                "methods": [{
+                  "name": "create",
+                  "alias": "添加权限"
+                },{
+                  "name": "update",
+                  "alias": "编辑"
+                },{
+                  "name": "read",
+                  "alias": "权限列表"
+                },{
+                  "name": "delete",
+                  "alias": "删除"
+                }]
+              }
+              ]
+          },
+          {
+            "name": "oms.client",
+            "alias": "客户端管理",
+            "controllers": [
+              {
+                "name": "oms.client.tab",
+                "alias": "TAB管理",
+                "methods": [{
+                  "name": "create",
+                  "alias": "添加权限"
+                },{
+                  "name": "update",
+                  "alias": "编辑"
+                },{
+                  "name": "read",
+                  "alias": "权限列表"
+                },{
+                  "name": "delete",
+                  "alias": "删除"
+                }]
+              }
+            ]
+          },
+          {
+            "name": "oms.interface",
+            "alias": "接口管理",
+            "controllers": [
+              {
+                "name": "oms.interface.tmpapi",
+                "alias": "自定义接口管理",
+                "methods": [{
+                  "name": "create",
+                  "alias": "添加权限"
+                },{
+                  "name": "update",
+                  "alias": "编辑"
+                },{
+                  "name": "read",
+                  "alias": "权限列表"
+                },{
+                  "name": "delete",
+                  "alias": "删除"
+                }]
+              }
+            ]
+          }
+
+			]
+		}
+		,
+    {
+      "name": "jieshao",
+      "alias": "JIESHAO",
+      "modules":[
+        {
+          "name": "oms.home",
+          "alias": "用户概况",
+          "controllers": [] ,
+          "methods": [{
+            "name": "create",
+            "alias": "添加权限"
+          },{
+            "name": "update",
+            "alias": "编辑"
+          },{
+            "name": "read",
+            "alias": "权限列表"
+          },{
+            "name": "delete",
+            "alias": "删除"
+          }]
+        },
+        {
+          "name": "oms.system",
+          "alias": "权限管理",
+          "controllers": [
+            {
+              "name": "oms.system.permission",
+              "alias": "权限管理",
+              "methods": [{
+                "name": "create",
+                "alias": "添加权限"
+              },{
+                "name": "update",
+                "alias": "编辑"
+              },{
+                "name": "read",
+                "alias": "权限列表"
+              },{
+                "name": "delete",
+                "alias": "删除"
+              }]
+            },
+            {
+              "name": "oms.system.role",
+              "alias": "角色管理",
+              "methods": [{
+                "name": "create",
+                "alias": "添加权限"
+              },{
+                "name": "update",
+                "alias": "编辑"
+              },{
+                "name": "read",
+                "alias": "权限列表"
+              },{
+                "name": "delete",
+                "alias": "删除"
+              }]
+            },
+            {
+              "name": "oms.system.user",
+              "alias": "账号管理",
+              "methods": []
+            },
+            {
+              "name": "oms.system.permissionrole",
+              "alias": "设置权限",
+              "methods": []
+            }
+
+          ]
+        },
+        {
+          "name": "oms.basic",
+          "alias": "基础管理",
+          "controllers": [
+            {
+              "name": "oms.basic.property",
+              "alias": "属性管理",
+              "methods": [{
+                "name": "create",
+                "alias": "新增属性"
+              },{
+                "name": "update",
+                "alias": "编辑"
+              },{
+                "name": "read",
+                "alias": "权限列表"
+              },{
+                "name": "delete",
+                "alias": "删除"
+              }]
+            },
+            {
+              "name": "oms.basic.channelClass",
+              "alias": "频道分类管理",
+              "methods": ["create","update","read","delete"]
+            },
+            {
+              "name": "oms.basic.tag",
+              "alias": "标签管理",
+              "methods": []
+            }
+          ]
+        }
+
+      ]
+    },
+		{
+			"name": "adv",
+			"alias": "广告系统",
+			"modules": [
+				{
+					"name": "adv.home",
+					"alias": "首页",
+					"controllers": [],
+					"methods": []
+				}
+			]
+		}
+       ,
+      {
+        "name": "area",
+        "alias": "地域系统",
+        "modules": [
+          {
+            "name": "area.area",
+            "alias": "地域管理",
+            "controllers": [] ,
+            "methods": [{
+                "name": "create",
+                "alias": "添加权限"
+              },{
+                "name": "update",
+                "alias": "编辑"
+              },{
+                "name": "read",
+                "alias": "权限列表"
+              },{
+                "name": "delete",
+                "alias": "删除"
+            }]
+          }
+        ]
+      }
+	]
+}
+
+//
+//{
+//'cpSort':[
+//{
+//"cpid":1,
+//"sortNum":2
+//},
+//{
+//"cpid":1,
+//"sort":2
+//}
+//]
+//}

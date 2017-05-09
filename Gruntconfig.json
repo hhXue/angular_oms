@@ -1,0 +1,49 @@
+{
+
+  "configVars": {
+    "app": "dev",
+    "appjs": "scripts",
+    "appcss": "styles",
+    "build": "build",
+    "dist": "app",
+    "hostname": "localhost",
+    "port": 8081
+  },
+  "bowerFiles": [
+    "angular/angular.js",
+    "angular-animate/angular-animate.js",
+    "angular-strap/dist/angular-strap.js",
+    "angular-strap/dist/angular-strap.tpl.js",
+    "jquery/dist/jquery.js",
+    "json3/lib/json3.js",
+    "angular-resource/angular-resource.js",
+    "angular-ui-router/release/angular-ui-router.js",
+    "ui-router-extras/release/ct-ui-router-extras.js",
+    "ngDialog/js/ngDialog.js",
+    "lodash/dist/lodash.js",
+    "restangular/dist/restangular.js",
+    "angularAMD/angularAMD.js",
+    "angularAMD/ngload.js",
+    "requirejs/require.js",
+    "requirejs-text/text.js",
+    "ngDraggable/ngDraggable.js",
+    "spin.js/spin.js",
+    "angular-spinner/angular-spinner.js",
+    "angular-sanitize/angular-sanitize.js",
+    "angular-i18n/angular-locale_zh-cn.js"
+
+  ],
+  "cssFiles": [
+    "bootstrap/dist/css/bootstrap.css",
+    "ngDialog/css/ngDialog.css",
+    "ngDialog/css/ngDialog-theme-default.css",
+    "angular-motion/dist/angular-motion.css"
+  ],
+  "cssFonts": [
+    "bootstrap/fonts/glyphicons-halflings-regular.*"
+  ],
+  "buildFiles": [
+    "images/**", "libs/require.js", "libs/*.swf"
+  ]
+
+}

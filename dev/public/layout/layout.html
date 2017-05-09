@@ -1,0 +1,28 @@
+
+<div ui-view="topnav" ></div>
+
+<div class="container-fluid" style="min-height:600px;">
+	<div class="row">
+		<!-- leftnav -->
+		<div class="col-md-2">
+			<div ui-view="leftnav" ></div>
+		</div>
+		<!-- content -->
+		<div class="col-md-10">
+			<div ui-view="content" ></div>
+		</div>
+	</div>
+</div>
+
+<nav class="navbar navbar-default " style="position: absolute;
+  width: 100%;
+  z-index: 1;
+ " >
+	<!--<div class="container-fluid" style="margin:7px 0;">-->
+		<!--<div class="row text-center font-12">-->
+			<!--版权所有：&copy;-->
+			<!--<br/>-->
+			<!--备案编号：-->
+		<!--</div>-->
+	<!--</div>-->
+</nav>

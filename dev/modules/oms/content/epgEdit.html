@@ -1,0 +1,99 @@
+
+<div class="alert alert-info text-center">{{title}}</div>
+
+<form name="myform" id="myform"  class="form-horizontal css-form" role="form" novalidate>
+    <div class="form-group" ng-class="{true:'has-error'}[ submitted && !myform.channelName.$valid ]">
+        <label for="name" class="col-md-3 control-label text-right">频道名称：</label>
+        <div class="col-md-9">
+            <input type="text" ng-model="epg.channelName" name="channelName" id="channelName" class="form-control" required ng-maxlength="20" ng-minLength="2"/>
+            <small class="text-danger" ng-show="myform.channelName.$error.required && (myform.channelName.$dirty || submitted)" >请输入频道名称</small>
+            <small class="text-danger" ng-show="myform.channelName.$error.minlength" >名称名称最小2个字符</small>
+            <small class="text-danger" ng-show="myform.channelName.$error.maxlength" >名称最大不能超过20个字符</small>
+            <small class="text-success" ng-show="myform.channelName.$valid">
+                <span class="glyphicon glyphicon-ok"></span>
+            </small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label text-right">EPG来源：</label>
+        <div class="col-md-9 control-label" >
+            <div class="col-xs-4 text-left">
+                <input type="radio"  value="2"  name="epgSource" id="hand" ng-model="epg.epgSource"  />
+                <label for="hand">手工上传</label>
+            </div>
+            <div class="col-xs-4 text-left">
+                <input type="radio" value="1"  name="epgSource" id="tvsou" ng-model="epg.epgSource"  />
+                <label for="tvsou">tvsou</label>
+            </div>
+            <div class="col-xs-4 text-left" >
+                <input type="radio" value="3"  name="epgSource" id="cibn" ng-model="epg.epgSource"  />
+                <label for="cibn">CIBN</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" style="height:200px;" ng-show="epg.epgSource==2">
+        <label class="col-md-3 text-right">节目单文件：</label>
+        <div class="col-md-9">
+            <input type="file" class="form-control" ng-model="epg.upload" file-model="uploadfile" name="upload" id="upload" required />
+            <small class="text-danger" ng-if="myform.upload.$error.required && (myform.upload.$dirty || submitted)" >请上传文件</small>
+            <small class="text-success" ng-show="myform.upload.$valid">
+                <span class="glyphicon glyphicon-ok"></span>
+            </small>
+        </div>
+    </div>
+    <div class="form-group text-center">
+        <div class="form-group text-center" style="height:50px;" ng-if="epg.epgSource==1">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <ui-select ng-model="epg.thirdId"
+                           theme="bootstrap"
+                           name="thirdId"
+                           reset-search-input="false"
+                           required
+                           title="选择频道">
+                    <ui-select-match placeholder="关键词搜索">
+                        {{ $select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="epg.id as epg in channelList  | filter: $select.search" refresh="epgEditCtrl.refreshChannels($select.search)" refresh-delay="0" >
+                        <div ng-bind-html="epg.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group text-center" style="height:50px;" ng-if="epg.epgSource==3">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <ui-select ng-model="epg.thirdId"
+                           theme="bootstrap"
+                           ng-disabled="disabled"
+                           reset-search-input="false"
+                           title="选择频道">
+                    <ui-select-match placeholder="关键词搜索">
+                        {{ $select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="epg.id as epg in channelList track by $index  | filter: $select.search" refresh="epgEditCtrl.refreshChannels($select.search)" refresh-delay="0" >
+                        <div ng-bind-html="epg.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <small class="text-danger" ng-if="myform.thirdId.$error.required && (myform.thirdId.$dirty || submitted)" >请选择频道</small>
+        <small class="text-success" ng-show="myform.thirdId.$valid">
+            <span class="glyphicon glyphicon-ok"></span>
+        </small>
+        <!--{{epg.thirdId}}-->
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 text-center">
+            <button class="btn btn-primary" ng-click="epgEditCtrl.checkCloseDialog()" ng-disabled="submitStatus">保存</button>
+        </div>
+        <div class="col-md-6 text-center">
+            <button class="btn btn-primary" ng-click="closeThisDialog(0)">取消</button>
+        </div>
+    </div>
+</form>
+
+<!--<div class="alert alert-danger" ng-show="errorMessage!=''">-->
+    <!--{{errorMessage}}-->
+<!--</div>-->

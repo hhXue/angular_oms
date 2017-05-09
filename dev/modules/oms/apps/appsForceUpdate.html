@@ -1,0 +1,84 @@
+<div class="alert alert-info text-center">{{title}}</div>
+
+<form name="myform" class="form-horizontal css-form" role="form" novalidate>
+
+    <div class="col-md-12">
+        <a href="javascript:;" class="btn btn-default col-md-6 mars"  ng-click="appsForceUpdateCtrl.allMarket($event)">
+            全部
+            <span ng-if="showAll && (newValues.appsUpdateStatus!=='1')" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        </a>
+        <a href="javascript:;" class="btn btn-default col-md-6 mar"  ng-disabled="showAll" ng-repeat="market in marketList"  ng-click="appsForceUpdateCtrl.currentMarket(market,$index,$event)">
+            {{ market.name }}
+            <span ng-if="(showAll && (newValues.appsUpdateStatus!=='1')) || showMarkets.indexOf(market.marketId) > -1" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        </a>
+    </div>
+    <div ng-repeat="m_app in marketApp" name="marketApp" >
+        <span ng-model="app.id"></span>
+        <span ng-model="m_app.appMarketId"></span>
+        <div class="form-group">
+            <label for="appsIsUpdate" class="col-md-3 control-label text-right">升级选择：</label>
+            <div class="col-md-9 control-label" style="text-align: left">
+                <input id="appsIsUpdate" type="radio" ng-model="m_app.appsUpdateStatus" value="1" />不升级 &nbsp;&nbsp;&nbsp;&nbsp;
+                <input  type="radio" ng-model="m_app.appsUpdateStatus" value="2" />检测升级&nbsp;&nbsp;&nbsp;&nbsp;
+                <input  type="radio" ng-model="m_app.appsUpdateStatus" value="3" />弹框升级&nbsp;&nbsp;&nbsp;&nbsp;
+                <input  type="radio" ng-model="m_app.appsUpdateStatus" value="4" />强制升级
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="appsTargetVersion" class="col-md-3 control-label text-right">目标版本：</label>
+            <div class="col-md-9">
+                <select class="form-control" ng-model="m_app.appsTargetVersion" name="appsTargetVersion" id="appsTargetVersion"
+                        ng-options="role.appsAppVersion as role.appsAppVersion for role in roles" >
+
+
+                </select>
+
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{true:'has-error'}[ submitted && !myform.name.$valid ]">
+            <label for="appsAppSource" class="col-md-3 control-label text-right">下载地址：</label>
+            <div class="col-md-9">
+                <input type="text" ng-model="m_app.appsAppSource" name="appsAppSource" id="appsAppSource" class="form-control" ng-maxlength="120" ng-minLength="2"/>
+                <!--<small class="text-danger" ng-if="myform.appsAppSource.$error.required && (myform.appsAppSource.$dirty || submitted)">-->
+                <!--必须填入功能名称-->
+                <!--</small>-->
+                <small class="text-danger" ng-if="myform.appsAppSource.$error.minlength">
+                    名称最小2个字符
+                </small>
+                <small class="text-danger" ng-if="myform.appsAppSource.$error.maxlength">
+                    名称最大不能超过120个字符
+                </small>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="appsUpdateMessage" class="col-md-3 control-label text-right">提示信息：</label>
+            <div class="col-md-9">
+                <textarea type="text"  ng-model="m_app.appsUpdateMessage" name="appsUpdateMessage" id="appsUpdateMessage" class="form-control" ></textarea>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="alert alert-danger" ng-if="errorMessage!=''">
+        {{errorMessage}}
+    </div>
+
+
+	<div class="form-group">
+		<div class="col-md-6 text-center">
+			<a class="btn btn-primary" ng-click="appsForceUpdateCtrl.checkCloseDialog()" ng-disabled="submitStatus">保存</a>
+
+		</div>
+
+		<div class="col-md-6 text-center">
+			<a class="btn btn-primary" ng-click="closeThisDialog(0)">取消</a>
+		</div>
+	</div>
+</form>
+
+

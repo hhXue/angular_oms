@@ -1,0 +1,31 @@
+{
+    "orderBy": "",
+    "orderDesc": false,
+    "pageSize": 20,
+    "totalResults": 3,
+    "totalPages": 1,
+    "currentPage": 1,
+    "rows": [
+        {
+            "sid": 800,
+            "channelSName": "abcd"
+        },
+        {
+            "sid": 1001,
+            "channelSName": "江苏卫视"
+        },{
+            "sid": 1009,
+            "channelSName": "湖南卫视"
+        },{
+            "sid": 1008,
+            "channelSName": "凤凰卫视"
+        },{
+            "sid": 1002,
+            "channelSName": "河南卫视"
+        },{
+            "sid": 1021,
+            "channelSName": "CCTV5"
+        }
+    ]
+}
+

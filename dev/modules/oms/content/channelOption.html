@@ -1,0 +1,132 @@
+<div class="alert alert-info text-center">{{title}}</div>
+
+<form name="myform" class="form-horizontal css-form" role="form" novalidate >
+	<!-- epg 节点选择 -->
+	<div class="form-group" ng-if="type==0">
+		<div class="col-md-3" dir-paginate="item in items | itemsPerPage: itemsPerPage" total-items="totalItems" >
+			<label class="radio-inline">
+				<input type="radio" name="option" ng-model="option"  ng-checked="item.check" value="{{item.id}}" ng-click="ckOption(item)">
+				<span ng-if="item.name">{{item.name}}</span>
+				<span ng-if="!item.name">错误数据</span>
+			</label>
+		</div>
+		<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+	</div>
+	<!-- cp 节点选择 频道分类标签  -->
+	<div class="form-group" ng-if="type==1">
+		<div class="col-md-12">
+			<div class="form-group">
+				<label class="sr-only" for="searchCpName">CP名称</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" ng-model="searchParams.name"  id="searchCpName" placeholder="CP名称"></div>
+				<button type="submit" class="btn btn-primary" ng-click="itemCtrl.search()">搜索</button>
+			</div>
+		</div>
+		<div class="col-md-9 text-center">
+			<table class="table table-hover">
+				<thead>
+					<th></th>
+					<th class="text-center">CP名称</th>
+				</thead>
+				<tbody>
+					<tr dir-paginate="item in items | itemsPerPage: itemsPerPage" total-items="totalItems" >
+						<td>
+							<input type="checkbox" name="option" id="option" ng-model="option" value="{{item.id}}" ng-checked="item.check" ng-click="ckMore(item,$event)"></td>
+						<td>
+							<span ng-if="item.name">{{item.name}}</span>
+							<span ng-if="!item.name">错误数据</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+		</div>
+	</div>
+	<!--频道tag 频道App 标签 -->
+	<div class="form-group" ng-if="type==2">
+		<div class="col-md-3" dir-paginate="item in items | itemsPerPage: itemsPerPage" total-items="totalItems" >
+			<label class="radio-inline">
+				<input type="checkbox" name="option"  ng-checked="item.check" ng-model="option" value="{{item.id}}"  ng-click="ckMore(item,$event)">
+				<span ng-if="item.name">{{item.name}}</span>
+				<span ng-if="!item.name">错误数据</span>
+			</label>
+		</div>
+        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+	</div>
+
+	<div class="form-group" ng-if="type==3">
+		<div class="col-md-12"  >
+			<!--<label class="radio-inline">-->
+				<!--<input type="checkbox" name="option"  ng-checked="item.check" ng-model="option" value="{{item.id}}"  ng-click="ckMore(item,$event)">-->
+				<!--<span ng-if="item.name">{{item.appKeyName}}&nbsp;{{item.name}}.{{item.version}}</span>-->
+				<!--<span ng-if="!item.name">错误数据</span>-->
+			<!--</label>-->
+            <app-version-select
+                    type="video"
+                    id="tablet.id"
+                    returnValue="app.appId"
+                    app-ver-list="tabVersion">
+
+            </app-version-select>
+		</div>
+		<!--<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>-->
+	</div>
+
+    <div class="form-group" ng-if="type==4">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="sr-only" for="searchSourceName">源名称</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" ng-model="searchParams.sourceName"  id="searchSourceName" placeholder="源名称"></div>
+                <button type="submit" class="btn btn-primary" ng-click="itemCtrl.search()">搜索</button>
+            </div>
+        </div>
+
+        <div class="text-center col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <th  class="col-md-2" ></th>
+                    <th class="col-md-2 text-center" >源ID</th>
+                    <th class="col-md-8 text-center">源名称</th>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="item in items | itemsPerPage: itemsPerPage" total-items="totalItems" >
+                        <td class="text-right">
+                            <input type="radio" name="option"  ng-checked="item.check" ng-model="option" value="{{item.sourceId}}"  ng-click="ckOption(item)">
+                        </td>
+                        <td>
+                            <span ng-if="item.sourceId">{{item.sourceId}}</span>
+                        </td>
+                        <td>
+                            <span ng-if="item.sourceName">{{item.sourceName}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+    </div>
+
+    <!--地域 area -->
+    <div class="form-group" ng-if="type==5">
+        <div class="col-md-3" dir-paginate="item in items | itemsPerPage: itemsPerPage" total-items="totalItems" >
+            <label class="radio-inline">
+                <input type="checkbox" name="option"  ng-checked="item.check" ng-model="option" value="{{item.areaId}}"  ng-click="ckMore(item,$event)">
+                <span ng-if="item.areaName">{{item.areaName}}</span>
+                <span ng-if="!item.areaName">错误数据</span>
+            </label>
+        </div>
+        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+    </div>
+
+	<div class="form-group">
+		<div class="col-md-6 text-center">
+			<button class="btn btn-primary" ng-if="type!==5" ng-click="closeThisDialog(rItem)" ng-disabled="submitStatus">保存</button>
+			<button class="btn btn-primary" ng-if="type==5" ng-click="checkCloseDialog(rItem)" ng-disabled="submitStatus">保存</button>
+		</div>
+		<div class="col-md-6 text-center">
+			<button class="btn btn-primary" ng-click="closeThisDialog(0)">取消</button>
+		</div>
+	</div>
+</form>

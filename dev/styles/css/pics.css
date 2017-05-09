@@ -1,0 +1,94 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+header .nav {
+  width: 100%;
+  height: 6.2rem;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+}
+header .nav img {
+  width: 21%;
+  height: 0.5rem;
+  margin-top: 3rem;
+}
+header .nav img:nth-child(1) {
+  margin-left: 10%;
+  height: 0.5rem ;
+}
+header .nav img:nth-child(3) {
+  height: 0.5rem ;
+  margin-right: 10%;
+}
+header .nav p {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  line-height: 2.5rem;
+  text-align: center;
+  color: #333;
+}
+main {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+main .pic {
+  width: 46%;
+  height: 13.5rem;
+  float: left;
+  font-size: 1.2rem;
+  margin-left: 2.7%;
+  margin-bottom: 2rem;
+  position: relative;
+}
+main .pic img {
+  width: 100%;
+  height: 11.2rem;
+}
+main .pic p.name {
+  position: absolute;
+  color: white;
+  left: 0.6rem;
+  top: 0.6rem;
+  font-size: 1.3rem;
+}
+main .pic .xinxi {
+  position: relative;
+}
+main .pic .xinxi p {
+  font-size: 1.4rem;
+  float: left;
+  color: #333;
+}
+main .pic .xinxi p:nth-child(2) {
+  width: 4rem;
+  height: 4rem;
+  box-shadow: 0 0 0.3rem #ccc;
+  border-radius: 50%;
+  line-height: 4rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  left: 36%;
+  top: -2rem;
+  color: #999999;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+main .pic .xinxi p:nth-child(3) {
+  float: right;
+}
+footer .more {
+  width: 7rem;
+  height: 2rem;
+  margin: 0 auto;
+  text-align: center;
+}
+footer .more a {
+  font-size: 1.3rem;
+  color: red;
+}

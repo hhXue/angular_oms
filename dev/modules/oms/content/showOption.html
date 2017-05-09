@@ -1,0 +1,77 @@
+
+<div class="alert alert-info text-center">{{title}}</div>
+
+<form name="myform" class="form-horizontal css-form" role="form" novalidate>
+
+    <!--<div class="form-group" ng-if="title=='选择属性'">-->
+        <!--<div class="col-md-6" ng-repeat="item in items">-->
+            <!--<label class="radio-inline">-->
+                <!--<input type="checkbox" name="option" ng-checked="item.check" id="option" ng-model="option" value="{{item.id}}"  ng-click="ckMore(item.id)">-->
+                <!--<span ng-if="item.propertyName">{{item.propertyName}}</span>-->
+                <!--&lt;!&ndash;<span ng-if="!item.propertyName">错误数据</span>&ndash;&gt;-->
+            <!--</label>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="form-group" ng-if="title=='选择标签'">
+        <div class="col-md-6" ng-repeat="item in items">
+            <label class="radio-inline">
+                <input type="checkbox" name="option"   ng-checked="vod.tagId.indexOf(item.id)>-1" id="option" ng-model="option" value="{{item.id}}"  ng-click="ckMoreTag(item.id)">
+                <span ng-if="item.name">{{item.name}}</span>  <!--ng-checked="vod.tagId.indexOf(item.id)>-1"-->
+                <!--<span ng-if="!item.tagName">错误数据</span>-->
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group" ng-if="title=='选择应用'">
+        <!--<div class="col-md-6" ng-repeat="item in items">{{app.appId}}{{item.id}}-->
+            <!--<label class="radio-inline">-->
+                <!--<input type="checkbox" name="option"  ng-checked="app.appId.indexOf(item.id)>-1" id="option" ng-model="option" value="{{item.id}}"  ng-click="ckMoreApp(item.id)">-->
+                <!--<span ng-if="item.name">{{item.appKeyName}}&nbsp;{{item.name}}.{{item.version}}</span>-->
+                <!--<span ng-if="!item.name">错误数据</span>-->
+            <!--</label>-->
+        <!--</div>-->
+
+        <div class="col-md-12" >
+            <app-version-select
+                    type="show"
+                    id="tablet.id"
+                    returnValue="app.appId"
+                    app-ver-list="tabVersion">
+
+            </app-version-select>
+        </div>
+
+
+
+    </div>
+
+    <div class="form-group text-center" ng-if="title=='计费类型'">
+        <label for="roleId" class="col-md-3 control-label text-right">请选择类型：</label>
+        <div class="col-md-9">
+            <select ng-model="charge.chargeType" name="roleId" id="roleId" class="form-control"
+                    ng-options="role.name for role in chargelList"></select>
+        </div>
+
+    </div>
+
+    <div class="form-group text-center" ng-if="title=='所属地域'">
+        <div class="col-md-6" ng-repeat="item in items">
+            <label class="radio-inline">
+                <input type="checkbox" name="option"  ng-checked="item.check" id="option" ng-model="option" value="{{item.id}}"  ng-click="ckMoreApp(item.id)">
+                <span ng-if="item.name">{{item.name}}</span>
+                <span ng-if="!item.name">错误数据</span>
+            </label>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 text-center">
+            <button class="btn btn-primary" ng-click="showOptionCtrl.checkCloseDialog()" ng-disabled="submitStatus">保存</button><!--showOptionCtrl.checkCloseDialog()-->
+        </div>
+        <div class="col-md-6 text-center">
+            <button class="btn btn-primary" ng-click="closeThisDialog(0)">取消</button>
+        </div>
+    </div>
+</form>

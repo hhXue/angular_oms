@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>test_1</title>
+  <style>
+    *{
+      padding:0;
+      margin:0;
+    }
+    form{
+      border:1px solid #000000;
+    }
+    form::before, form::after{
+      content:"";
+      display:table;
+    }
+    form::after {
+      clear:both;
+    }
+    .info{
+      background-color: #ddd;
+      height:2rem;
+      line-height: 2rem;
+      border-bottom: 1px solid #000;
+      clear: both;
+    }
+    .type{
+      font-weight: bold;
+      width:10%;
+      text-align: center;
+      vertical-align: middle;
+      clear: both;
+      line-height: 4rem;
+    }
+    .list{
+      width:90%;
+      padding: 10px 0;
+    }
+    .content{
+      width:100%;
+      overflow: hidden;
+      border-bottom: 1px solid #000;
+    }
+    .left{
+      float: left;
+    }
+    .w20{
+      width:20%;
+    }
+    .w30{
+      width:30%;
+    }
+    .slist{
+      width:100%;
+      float:left;
+    }
+    .fontw{
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+<form action="">
+  <div class="info">联系人信息</div>
+  <div class="content">
+    <div class="type left">配偶</div>
+    <div class="list left">
+      <div class="slist">
+        <div class="w20 left">
+          <label for="">姓名</label>
+          <input type="text"/>
+        </div>
+        <div class="w20 left">
+          <label for="">移动电话</label>
+          <input type="text"/>
+        </div>
+        <div class="w30 left">
+          <label for="">单位名称</label>
+          <input type="text"/>
+        </div>
+      </div>
+      <div class="slist">
+        <div class="phone left">
+          <label for="">单位电话</label>
+          <input type="text"/>
+        </div>
+        <div class="w20 left">
+          <label for="">（区号）</label>
+          <input type="text"/>
+        </div>
+        <div class="w20 left">
+          <label for="">（总机）</label>
+          <input type="text"/>
+        </div>
+        <div class="w30 left">
+          <label for="">单位地址</label>
+          <input type="text"/>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+  <div class="content">
+    <div class="type left">直系亲属</div>
+    <div class="list left">
+      <div class="slist">
+        <div class="w20 left">
+          <label for="">姓名</label>
+          <input type="text"/>
+        </div>
+        <div class="w20 left">
+          <label for="">移动电话</label>
+          <input type="text"/>
+        </div>
+        <div class="w30 left">
+          <label for="">亲属关系</label>
+          <input type="text"/>
+        </div>
+      </div>
+      <div class="slist">
+        <div class="w20 left">
+          <label for="">住宅电话</label>
+          <input type="text"/>
+        </div>
+        <div class=" left">
+          <label for="">（区号）</label>
+          <input type="text"/>
+        </div>
+        <div class="w30 left">
+          <label for="">住宅地址</label>
+          <input type="text"/>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="type left" style="width:20%;line-height: 2rem;">以上联系人是否知晓此项借款</div>
+    <div class="list left" style="width:80%;">
+      <div class="slist">
+        <div class="w20 left ">
+          <label class="fontw">配偶</label>
+          <input type="radio"/>是
+          <input type="radio"/>否
+        </div>
+        <div class="w20 left">
+          <label class="fontw">直系亲属</label>
+          <input type="radio"/>是
+          <input type="radio"/>否
+        </div>
+        <div class="w20 left">
+          <label class="fontw">同事</label>
+          <input type="radio"/>是
+          <input type="radio"/>否
+        </div>
+        <div class="w20 left">
+          <label for="">其他联系人</label>
+          <input type="radio"/>是
+          <input type="radio"/>否
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</form>
+</body>
+</html>

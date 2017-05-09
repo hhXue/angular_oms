@@ -1,0 +1,51 @@
+<div class="alert alert-info">
+	<h4>广播接口管理</h4>
+</div>
+<div class="row">
+	<div class="col-md-4">
+       <a class="btn btn-primary" ng-click="audioapiCtrl.ordersNum()">确认排序</a>  <!--ng-if="methods.sort.name"-->
+    </div>
+	<!--<div class="col-md-8" ng-if="methods.index.name">-->
+		<!--<form class="form-inline pull-right" role="form">-->
+			<!--<div class="form-group">-->
+				<!--<label class="sr-only" for="searchCpName">CP名称</label>-->
+				<!--<input type="text" class="form-control" ng-model="searchParams.cpName" ng-enter="itemCtrl.search()" id="searchCpName" placeholder="CP名称">-->
+			<!--</div>-->
+			<!--<a type="submit" class="btn btn-primary" ng-click="itemCtrl.search()">搜索</a>-->
+		<!--</form>-->
+	<!--</div>-->
+</div>
+<div class="clearfix" style="margin-bottom: 20px;"></div>
+
+<div id="alert_info" ng-show="search_error">
+	<div class="alert alert-danger">{{search_error_msg}}</div>
+</div>
+<table class="table table-bordered table-hover table-striped">
+	<tr>
+		<!--<th width="2%"><input type="checkbox" ng-model="selectAll" ng-click="toggleAll()" /></th>-->
+		<th width="10%">ID</th>
+        <th width="10" style='min-width:80px'>权重</th>
+		<th width="30%">频道名称</th>
+		<th width="20%">状态</th>
+        <th width="30%">操作</th>
+	</tr>
+    <tr>
+        <td colspan="7" ng-show="loading_list">
+            <div style="position: relative;height:50px;">
+                <span us-spinner > </span>
+            </div>
+        </td>
+    </tr>
+	<tr dir-paginate="item in items | itemsPerPage: itemsPerPage" total-items="totalItems">
+		<!--<td><input type="checkbox" value="{{ item.id }}" name="ids[]" ng-model="item.checked" ng-checked="selectAll" ng-click="toggleSelection(item.id)" /></td>-->
+		<td>{{item.id}}</td>
+        <td><input type="text" class="form-control sortInput" value="{{ item.sort }}" data-id="{{ item.id }}"></td>
+		<td>{{ item.videoName }}</td>
+		<td>{{ typeStatus[item.status] }}</td>
+        <td>
+            <button class="btn btn-default" ng-if="item.status==0" ng-click="audioapiCtrl.update(item,1)">显示</button>
+            <button class="btn btn-default" ng-if="item.status==1" ng-click="audioapiCtrl.update(item,0)">不显示</button>
+        </td>
+	</tr>
+</table>
+<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>

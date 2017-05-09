@@ -1,0 +1,70 @@
+<div class="alert alert-info">
+	<h4>用户管理</h4>
+</div>
+<div class="row">
+	<div class="col-md-4">
+		<span class="btn btn-primary" ng-click="itemCtrl.createItem()" ng-if="methods.create.name">新增</span>
+	</div>
+
+	<div class="col-md-8" ng-if="methods.index.name">
+		<form class="form-inline pull-right" role="form">
+			<div class="form-group">
+				<label class="sr-only" for="searchUserName">登录名</label>
+				<input type="text" class="form-control" ng-model="searchParams.userName" id="searchUserName" placeholder="登录名" ng-enter="itemCtrl.search()"></div>
+			<div class="form-group">
+				<label class="sr-only" for="searchUserPersonName">昵称</label>
+				<input type="text" class="form-control" ng-model="searchParams.userPersonName" id="searchUserPersonName" placeholder="昵称" ng-enter="itemCtrl.search()"></div>
+			<div class="form-group">
+				<label class="sr-only" for="searchRoleId">角色</label>
+				<select class="form-control" ng-model="searchParams.roleId" id="searchRoleId" ng-change="itemCtrl.search()">
+					<option value="" >全部</option>
+					<option ng-repeat="role in roles" value={{role.roleId}} >{{role.roleName}}</option>
+				</select>
+			</div>
+
+			<a type="submit" class="btn btn-primary" ng-click="itemCtrl.search()">搜索</a>
+		</form>
+	</div>
+</div>
+<div class="clearfix" style="margin-bottom: 20px;"></div>
+
+<div id="alert_info" ng-show="search_error">
+	<div class="alert alert-danger">{{search_error_msg}}</div>
+</div>
+<table class="table table-bordered table-hover table-striped">
+	<tr>
+		<th width="15%">登录名</th>
+		<th width="20%">昵称</th>
+		<th width="10%">角色</th>
+		<th width="10%">工作单位</th>
+		<th width="20%">邮箱</th>
+		<th width="25%">操作</th>
+	</tr>
+	<tr>
+		<td colspan="7" ng-show="loading_list">
+			<div style="position: relative;height:50px;">
+				<span us-spinner ></span>
+			</div>
+		</td>
+	</tr>
+	<tr dir-paginate="item in items | itemsPerPage: itemsPerPage" total-items="totalItems">
+		<td>{{item.userName}}</td>
+		<td>{{ item.userPersonName }}</td>
+		<td>{{ item.roleName }}</td>
+		<td>{{ item.userUnitName }}</td>
+		<td>{{ item.userEmail }}</td>
+		<td>
+			<a class="btn btn-default" ng-click="itemCtrl.editItem(item)">编辑</a>
+			<a class="btn btn-default" ng-click="itemCtrl.deleteItem(item.id, $event)" >删除</a>
+			<span class="btn btn-default"  style="position: relative;height:35px;width:4em;display:none;">
+				<span us-spinner="{radius:1,lenth:4,width:2}" spinner-key="spinner_{{item.userId}}"></span>
+			</span>
+		</td>
+	</tr>
+
+
+</table>
+<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+
+
+
